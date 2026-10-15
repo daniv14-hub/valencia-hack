@@ -12,6 +12,7 @@ from pathlib import Path
 import pandas as pd
 
 from classify import classify
+from duplicates import agrupar
 
 ROOT = Path(__file__).parent
 CSV = ROOT / "data" / "propuestas.csv"
@@ -42,26 +43,23 @@ def main():
         for res in ex.map(tarea, pendientes):
             if res:
                 previos[str(res["id"])] = res
-                print(f"  ✓ {res['id']}: {res['estado_sugerido']}  ({res['coste_usd']:.5f} $)")
+                print(f"  ✓ {res['id']}: {[a['tipo'] for a in res['alertas']] or 'sin alertas'}  ({res['coste_usd']:.5f} $)")
                 OUT.write_text(json.dumps(list(previos.values()), ensure_ascii=False, indent=2), encoding="utf-8")
 
     total = sum(c.get("coste_usd", 0) for c in previos.values())
     print(f"\nGuardado {OUT} – {len(previos)} propuestas – coste total {total:.4f} $")
 
-    # Aciertos frente a decisiones reales de los técnicos
+    # Coincidencia con los técnicos: rechazada con alguna alerta, o viable sin alertas
     reales = df[df["decision_real"].isin(["viable", "rechazada"])]
     if len(reales):
-        mapa = {"viable": "viable", "rechazo_sugerido": "rechazada", "revisar": "revisar"}
-        aciertos = derivadas = 0
-        for _, r in reales.iterrows():
-            pred = mapa[previos[str(r["id"])]["estado_sugerido"]] if str(r["id"]) in previos else None
-            if pred == "revisar":
-                derivadas += 1
-            elif pred == r["decision_real"]:
-                aciertos += 1
-        print(f"Casos reales: {len(reales)} | acierta {aciertos} | deriva al técnico {derivadas} | "
-              f"falla {len(reales) - aciertos - derivadas}")
-
+        dup = set(agrupar(df).dropna(subset=["grupo_duplicado"])["id"].astype(str))
+        con_alerta = lambda i: bool(previos.get(i, {}).get("alertas")) or i in dup
+        rech = [str(i) for i in reales[reales["decision_real"] == "rechazada"]["id"]]
+        via = [str(i) for i in reales[reales["decision_real"] == "viable"]["id"]]
+        c_rech = sum(con_alerta(i) for i in rech)
+        c_via = sum(not con_alerta(i) for i in via)
+        print(f"Coincidencia con técnicos: {c_rech + c_via}/{len(reales)} | "
+              f"rechazadas con alerta {c_rech}/{len(rech)} | viables sin alertas {c_via}/{len(via)}")
 
 if __name__ == "__main__":
     main()

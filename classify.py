@@ -1,4 +1,4 @@
-"""Clasificador de propuestas VLCParticipa.
+"""Garbell: pre-filtro de propuestas VLCParticipa (señala alertas, no decide).
 
 - Con OPENROUTER_API_KEY en .env -> llama al LLM vía OpenRouter (API compatible con OpenAI).
 - Sin clave -> modo simulado con reglas sencillas, para poder desarrollar la app sin gastar.
@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Literal
 
 from dotenv import load_dotenv
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, Field, ValidationError
 
 load_dotenv()
 
@@ -28,40 +28,47 @@ PRICE_OUT = float(os.getenv("PRICE_OUT_PER_M", "0") or 0)
 
 
 # ---------- Esquema de salida ----------
-class Criterio(BaseModel):
-    ok: bool | None  # None = no se puede determinar (revisar)
-    motivo: str
-    norma: str
-
-
-class Criterios(BaseModel):
-    competencia: Criterio
-    inversion: Criterio
-    presupuesto: Criterio
+class Alerta(BaseModel):
+    tipo: Literal["duplicado", "competencia", "presupuesto", "no_inversion"]
+    mensaje: str
+    norma: str = ""
+    administracion: str | None = None  # solo en alertas de competencia
+    confianza: float = Field(ge=0, le=1)
 
 
 class Clasificacion(BaseModel):
-    estado_sugerido: Literal["viable", "revisar", "rechazo_sugerido"]
-    criterios: Criterios
-    confianza: float  # 0-1
+    alertas: list[Alerta] = []  # vacía = "Sin alertas · a priori viable"
     resumen: str
     borrador_carta_es: str = ""
     borrador_carta_va: str = ""
 
 
+def _limpiar(c: Clasificacion) -> dict:
+    datos = c.model_dump()
+    alertas = []
+    for a in datos["alertas"]:
+        if a["tipo"] == "duplicado":  # los duplicados los añade la app (duplicates.py)
+            continue
+        if a["tipo"] != "competencia" or not a["administracion"]:
+            a.pop("administracion")
+        alertas.append(a)
+    datos["alertas"] = alertas
+    return datos
+
+
 SCHEMA_TXT = """Devuelve SOLO un objeto JSON con esta forma exacta:
 {
-  "estado_sugerido": "viable" | "revisar" | "rechazo_sugerido",
-  "criterios": {
-    "competencia": {"ok": true|false|null, "motivo": "...", "norma": "..."},
-    "inversion":   {"ok": true|false|null, "motivo": "...", "norma": "..."},
-    "presupuesto": {"ok": true|false|null, "motivo": "...", "norma": "..."}
-  },
-  "confianza": 0.0-1.0,
+  "alertas": [
+    {"tipo": "competencia" | "presupuesto" | "no_inversion",
+     "mensaje": "...", "norma": "...",
+     "administracion": "solo en alertas de competencia",
+     "confianza": 0.0-1.0}
+  ],
   "resumen": "una frase para el técnico",
-  "borrador_carta_es": "carta en castellano o vacío",
-  "borrador_carta_va": "carta en valenciano o vacío"
-}"""
+  "borrador_carta_es": "borrador en castellano o vacío",
+  "borrador_carta_va": "borrador en valenciano o vacío"
+}
+Si no hay indicios claros de ningún problema, "alertas" es una lista vacía []."""
 
 
 def _prompt_usuario(p: dict) -> str:
@@ -104,7 +111,7 @@ def _classify_llm(p: dict) -> dict:
         )
         texto = resp.choices[0].message.content or ""
         try:
-            datos = Clasificacion(**_extraer_json(texto)).model_dump()
+            datos = _limpiar(Clasificacion(**_extraer_json(texto)))
         except (ValueError, ValidationError) as e:
             ultimo_error = e
             mensajes.append({"role": "assistant", "content": texto})
@@ -136,46 +143,41 @@ NO_INVERSION = r"fiesta|concierto|festival|taller|curso|campa[ñn]a|contratar|mo
 
 def _classify_mock(p: dict) -> dict:
     texto = f"{p.get('titulo', '')} {p.get('descripcion', '')}".lower()
-    comp = {"ok": True, "motivo": "Actuación en espacio público municipal.", "norma": "Art. 25 Ley 7/1985 LBRL"}
+    alertas = []
     for patron, (admin, norma) in AJENAS.items():
         if re.search(patron, texto, re.I):
-            comp = {"ok": False, "motivo": f"Competencia de {admin}.", "norma": norma}
+            alertas.append({"tipo": "competencia", "mensaje": f"Parece competencia de {admin}.",
+                            "norma": norma, "administracion": admin, "confianza": 0.85})
             break
-    inv = {"ok": True, "motivo": "Bien construible/adquirible con vida útil > 1 año.", "norma": "Bases VLCParticipa – proyectos de inversión"}
     if re.search(NO_INVERSION, texto):
-        inv = {"ok": False, "motivo": "Es gasto corriente o actividad, no una inversión.", "norma": "Bases VLCParticipa – proyectos de inversión"}
+        alertas.append({"tipo": "no_inversion", "mensaje": "Parece gasto corriente o actividad, no una inversión.",
+                        "norma": "Bases VLCParticipa – proyectos de inversión", "confianza": 0.8})
     try:
         euros = float(p.get("presupuesto_estimado") or 0)
     except ValueError:
         euros = 0
     if euros <= 0:
-        pres = {"ok": None, "motivo": "Sin presupuesto estimado: el técnico debe valorarlo.", "norma": "Bases – presupuesto"}
-    elif euros > 160000:
-        pres = {"ok": None, "motivo": f"{euros:,.0f} € supera la asignación orientativa del distrito.", "norma": "Bases – asignación por distrito"}
-    else:
-        pres = {"ok": True, "motivo": f"{euros:,.0f} € dentro de la asignación del distrito.", "norma": "Bases – asignación por distrito"}
-
-    if comp["ok"] is False or inv["ok"] is False:
-        estado, conf = "rechazo_sugerido", 0.85
-    elif pres["ok"] is None:
-        estado, conf = "revisar", 0.6
-    else:
-        estado, conf = "viable", 0.8
+        alertas.append({"tipo": "presupuesto", "mensaje": "Sin presupuesto estimado.",
+                        "norma": "Bases – presupuesto", "confianza": 0.9})
+    elif euros > 160000:  # [VERIFICAR C] umbral provisional
+        alertas.append({"tipo": "presupuesto", "mensaje": f"{euros:,.0f} € supera el umbral orientativo de 160.000 €.",
+                        "norma": "Bases – asignación por distrito", "confianza": 0.7})
 
     carta_es = carta_va = ""
-    if estado == "rechazo_sugerido":
-        motivo = comp["motivo"] if comp["ok"] is False else inv["motivo"]
+    motivo = next((a for a in alertas if a["tipo"] in ("competencia", "no_inversion")), None)
+    if motivo:
+        admin = motivo.get("administracion")
+        razon_es = f"es competencia de {admin}" if admin else "no es un proyecto de inversión"
+        razon_va = f"és competència de {admin}" if admin else "no és un projecte d'inversió"
         carta_es = (f"Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «{p.get('titulo')}». "
-                    f"Tras su revisión técnica, no puede pasar a votación: {motivo} ({comp['norma'] if comp['ok'] is False else inv['norma']}). "
+                    f"Tras su revisión técnica, no puede pasar a votación porque {razon_es} ({motivo['norma']}). "
                     "Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana")
         carta_va = (f"Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «{p.get('titulo')}». "
-                    f"Després de la revisió tècnica, no pot passar a votació: {motivo} "
+                    f"Després de la revisió tècnica, no pot passar a votació perquè {razon_va} ({motivo['norma']}). "
                     "Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana")
     return {
-        "estado_sugerido": estado,
-        "criterios": {"competencia": comp, "inversion": inv, "presupuesto": pres},
-        "confianza": conf,
-        "resumen": "Clasificación simulada (sin LLM).",
+        "alertas": alertas,
+        "resumen": "Pre-filtro simulado (sin LLM).",
         "borrador_carta_es": carta_es,
         "borrador_carta_va": carta_va,
         "tokens_in": 0, "tokens_out": 0, "coste_usd": 0.0, "segundos": 0.0,

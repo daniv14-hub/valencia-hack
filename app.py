@@ -1,4 +1,4 @@
-"""Copiloto VLCParticipa – panel del técnico municipal.
+"""Garbell – pre-filtro de propuestas VLCParticipa para el técnico municipal.
 
 Ejecutar:  streamlit run app.py
 """
@@ -14,22 +14,22 @@ from duplicates import agrupar, buscar_parecidas
 ROOT = Path(__file__).parent
 CSV = ROOT / "data" / "propuestas.csv"
 JSON = ROOT / "data" / "clasificacion.json"
-MIN_POR_PROPUESTA = 20  # supuesto para estimar horas ahorradas (decirlo en el pitch)
 
-st.set_page_config(page_title="Copiloto VLCParticipa", page_icon="🏛️", layout="wide")
+st.set_page_config(page_title="Garbell", page_icon="🏛️", layout="wide")
 st.markdown("""
 <style>
   .block-container {padding-top: 1.5rem;}
   h1, h2, h3 {color: #1f3b57;}
   .badge {padding: 2px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: 600;}
-  .viable {background:#e3f4e8; color:#1e6b34;}
-  .revisar {background:#fff4d6; color:#8a6100;}
-  .rechazo_sugerido {background:#fde4e4; color:#9b1c1c;}
+  .sin {background:#e3f4e8; color:#1e6b34;}
+  .con {background:#fff4d6; color:#8a6100;}
   .nota {color:#5b6b7b; font-size:0.85rem;}
 </style>""", unsafe_allow_html=True)
 
-ICONO = {"viable": "🟢 Viable", "revisar": "🟡 Revisar", "rechazo_sugerido": "🔴 Rechazo sugerido"}
-CRIT = {"competencia": "Competencia municipal", "inversion": "Es inversión", "presupuesto": "Presupuesto"}
+ICONO = {"duplicado": "🔁", "competencia": "🏛️", "presupuesto": "💶", "no_inversion": "🎉"}
+NOMBRE = {"duplicado": "Duplicado", "competencia": "Competencia", "presupuesto": "Presupuesto",
+          "no_inversion": "No inversión"}
+SIN_ALERTAS = "Sin alertas · a priori viable"
 
 
 # ---------- Carga de datos ----------
@@ -48,7 +48,8 @@ def cargar():
 
 if "extra" not in st.session_state:
     st.session_state.extra = []        # propuestas nuevas de la demo en vivo
-    st.session_state.decisiones = {}   # id -> decisión del técnico
+    st.session_state.decisiones = {}   # id -> "validada"
+    st.session_state.alertas_dec = {}  # (id, tipo) -> "confirmada" | "descartada"
 
 df_base, cls = cargar()
 cls = dict(cls)
@@ -57,53 +58,77 @@ for p, c in st.session_state.extra:
 df = pd.concat([df_base, pd.DataFrame([p for p, _ in st.session_state.extra])], ignore_index=True) \
     if st.session_state.extra else df_base.copy()
 df = agrupar(df)
-df["estado"] = df["id"].map(lambda i: cls.get(str(i), {}).get("estado_sugerido", "revisar"))
-df["confianza"] = df["id"].map(lambda i: cls.get(str(i), {}).get("confianza", 0))
-df["decision"] = df["id"].map(lambda i: st.session_state.decisiones.get(str(i), "—"))
+
+
+def alertas_de(r):
+    """Alertas del LLM + alerta de duplicado calculada aquí con duplicates.py."""
+    al = list(cls.get(str(r.id), {}).get("alertas", []))
+    if isinstance(r.grupo_duplicado, str) and r.grupo_duplicado:
+        al.insert(0, {"tipo": "duplicado", "mensaje": f"Posible duplicado ({r.grupo_duplicado}) de: #{r.similar_a}",
+                      "norma": "", "confianza": None})
+    return al
+
+
+def decision(r):
+    if st.session_state.decisiones.get(str(r.id)) != "validada":
+        return "Pendiente"
+    n_conf = sum(st.session_state.alertas_dec.get((str(r.id), a["tipo"])) == "confirmada" for a in r.alertas)
+    return f"Validada · {n_conf} alerta(s) confirmada(s)" if n_conf else "Validada"
+
+
+df["alertas"] = [alertas_de(r) for r in df.itertuples()]
+df["tipos"] = df["alertas"].map(lambda al: {a["tipo"] for a in al})
+df["decision"] = [decision(r) for r in df.itertuples()]
 
 # ---------- Cabecera ----------
-st.title("🏛️ Copiloto VLCParticipa")
-st.caption("Validación técnica asistida de propuestas · Ajuntament de València · "
-           "**La IA propone, el técnico decide**")
+st.title("🏛️ Garbell")
+st.caption("Pre-filtro de propuestas VLCParticipa · Ajuntament de València · "
+           "**La IA señala, el técnico decide**")
 
 n = len(df)
+con = df["tipos"].map(bool)
 grupos = df["grupo_duplicado"].dropna().nunique()
-redundantes = df["grupo_duplicado"].notna().sum() - grupos
 costes = [c.get("coste_usd", 0) for c in cls.values()]
 coste_medio = sum(costes) / len(costes) if costes else 0
-k = st.columns(6)
-k[0].metric("Propuestas recibidas", n)
-k[1].metric("Grupos de duplicados", grupos, f"{redundantes} redundantes", delta_color="off")
-k[2].metric("🟢 Viables", (df.estado == "viable").sum())
-k[3].metric("🟡 A revisar", (df.estado == "revisar").sum())
-k[4].metric("🔴 Rechazo sugerido", (df.estado == "rechazo_sugerido").sum())
-k[5].metric("Horas de técnico ahorradas*", f"{n * MIN_POR_PROPUESTA / 60 * 0.6:.0f} h")
-st.markdown(f"<span class='nota'>* Estimación: {MIN_POR_PROPUESTA} min por propuesta y 60 % del trabajo "
-            f"de cribado asistido. Coste IA medio: {coste_medio:.4f} $/propuesta · "
+reales = df[df.decision_real.isin(["viable", "rechazada"])]
+rech, via = reales[reales.decision_real == "rechazada"], reales[reales.decision_real == "viable"]
+c_rech, c_via = int(rech.tipos.map(bool).sum()), int((~via.tipos.map(bool)).sum())
+k = st.columns(5)
+k[0].metric("Propuestas", n)
+k[1].metric("Sin alertas", int((~con).sum()))
+k[2].metric("Con alertas", int(con.sum()))
+k[3].metric("Grupos de duplicados", grupos)
+k[4].metric("Coincidencia con técnicos", f"{c_rech + c_via}/{len(reales)}" if len(reales) else "—")
+k[4].markdown(f"<span class='nota'>Con alerta y descartadas por el técnico: {c_rech}/{len(rech)}<br>"
+              f"Sin alertas y admitidas por el técnico: {c_via}/{len(via)}</span>", unsafe_allow_html=True)
+k2 = st.columns(4)
+for col, (t, nombre) in zip(k2, NOMBRE.items()):
+    col.metric(f"{ICONO[t]} {nombre}", int(df.tipos.map(lambda s: t in s).sum()))
+st.markdown(f"<span class='nota'>Coste IA medio: {coste_medio:.4f} $/propuesta · "
             f"modelo: {MODEL if API_KEY else 'simulado (sin clave)'}</span>", unsafe_allow_html=True)
 
-tab_bandeja, tab_dup, tab_nueva = st.tabs(["📥 Bandeja de validación", "🔁 Duplicados", "✍️ Nueva propuesta (vista vecino)"])
+tab_bandeja, tab_dup, tab_nueva = st.tabs(["📥 Bandeja de revisión", "🔁 Duplicados", "✍️ Nueva propuesta (vista vecino)"])
 
 # ---------- Bandeja ----------
 with tab_bandeja:
     f1, f2, f3 = st.columns([2, 2, 3])
     distritos = f1.multiselect("Distrito", sorted(df.distrito.unique()))
-    estados = f2.multiselect("Estado sugerido", list(ICONO), format_func=ICONO.get)
+    filtro = f2.multiselect("Alertas", ["sin_alertas", *NOMBRE],
+                            format_func=lambda t: f"{ICONO[t]} {NOMBRE[t]}" if t in NOMBRE else "Sin alertas")
     texto = f3.text_input("Buscar", placeholder="palabra clave…")
     vista = df.copy()
     if distritos:
         vista = vista[vista.distrito.isin(distritos)]
-    if estados:
-        vista = vista[vista.estado.isin(estados)]
+    if filtro:
+        vista = vista[vista.tipos.map(lambda s: bool(s & set(filtro)) or (not s and "sin_alertas" in filtro))]
     if texto:
         vista = vista[vista.titulo.str.contains(texto, case=False) | vista.descripcion.str.contains(texto, case=False)]
 
-    tabla = vista[["id", "titulo", "distrito", "estado", "confianza", "grupo_duplicado", "decision"]].copy()
-    tabla["estado"] = tabla["estado"].map(ICONO)
-    tabla["grupo_duplicado"] = tabla["grupo_duplicado"].fillna("")
-    st.dataframe(tabla, hide_index=True, use_container_width=True,
-                 column_config={"confianza": st.column_config.ProgressColumn("Confianza", min_value=0, max_value=1),
-                                "grupo_duplicado": "Duplicado", "decision": "Decisión técnico"})
+    tabla = vista[["id", "titulo", "distrito"]].copy()
+    for t, nombre in NOMBRE.items():
+        tabla[nombre] = vista.tipos.map(lambda s, t=t: ICONO[t] if t in s else "")
+    tabla["Decisión del técnico"] = vista.decision
+    st.dataframe(tabla, hide_index=True, use_container_width=True)
 
     st.subheader("Detalle de la propuesta")
     if vista.empty:
@@ -116,35 +141,39 @@ with tab_bandeja:
         izq, der = st.columns([3, 2])
         with izq:
             st.markdown(f"### {p.titulo}")
-            st.markdown(f"<span class='badge {p.estado}'>{ICONO[p.estado]}</span> &nbsp; "
-                        f"{p.distrito} · {p.barrio} · {float(p.presupuesto_estimado or 0):,.0f} €",
-                        unsafe_allow_html=True)
+            etiqueta = f"{len(p.alertas)} alerta(s)" if p.alertas else SIN_ALERTAS
+            st.markdown(f"<span class='badge {'con' if p.alertas else 'sin'}'>{etiqueta}</span> &nbsp; "
+                        f"{p.distrito} · {p.barrio} · {float(p.presupuesto_estimado or 0):,.0f} € · "
+                        f"Decisión del técnico: <b>{p.decision}</b>", unsafe_allow_html=True)
             st.write(p.descripcion)
             if c.get("resumen"):
                 st.info(f"**Resumen IA:** {c['resumen']}")
-            if isinstance(p.grupo_duplicado, str) and p.grupo_duplicado:
-                st.warning(f"🔁 Posible duplicado ({p.grupo_duplicado}) de: #{p.similar_a}")
         with der:
-            st.markdown("**Criterios de viabilidad**")
-            for clave, nombre in CRIT.items():
-                cr = c.get("criterios", {}).get(clave, {})
-                ok = cr.get("ok")
-                icono = "✅" if ok is True else "❌" if ok is False else "❔"
-                st.markdown(f"{icono} **{nombre}** — {cr.get('motivo', '')}  \n"
-                            f"<span class='nota'>📜 {cr.get('norma', '')}</span>", unsafe_allow_html=True)
-        b1, b2, b3 = st.columns(3)
-        if b1.button("✔️ Aceptar sugerencia", use_container_width=True):
-            st.session_state.decisiones[str(sel)] = f"Aceptada ({ICONO[p.estado]})"
-            st.rerun()
-        if b2.button("✏️ Marcar viable", use_container_width=True):
-            st.session_state.decisiones[str(sel)] = "Cambiada → viable"
-            st.rerun()
-        if b3.button("✏️ Marcar rechazo", use_container_width=True):
-            st.session_state.decisiones[str(sel)] = "Cambiada → rechazo"
+            st.markdown("**Alertas del pre-filtro**")
+            if not p.alertas:
+                st.success(SIN_ALERTAS)
+            for a in p.alertas:
+                t, clave = a["tipo"], (str(sel), a["tipo"])
+                admin = f"<br>Administración competente: {a['administracion']}" if a.get("administracion") else ""
+                conf = f" · confianza {a['confianza']:.0%}" if a.get("confianza") is not None else ""
+                st.markdown(f"{ICONO[t]} **{NOMBRE[t]}** — {a['mensaje']}  \n"
+                            f"<span class='nota'>📜 {a.get('norma') or '—'}{conf}{admin}</span>",
+                            unsafe_allow_html=True)
+                if clave in st.session_state.alertas_dec:
+                    st.caption(f"Alerta {st.session_state.alertas_dec[clave]} por el técnico")
+                x, y = st.columns(2)
+                if x.button("Confirmar alerta", key=f"conf{sel}{t}", use_container_width=True):
+                    st.session_state.alertas_dec[clave] = "confirmada"
+                    st.rerun()
+                if y.button("Descartar alerta", key=f"desc{sel}{t}", use_container_width=True):
+                    st.session_state.alertas_dec[clave] = "descartada"
+                    st.rerun()
+        if st.button("✔️ Validar propuesta", use_container_width=True):
+            st.session_state.decisiones[str(sel)] = "validada"
             st.rerun()
 
         if c.get("borrador_carta_es") or c.get("borrador_carta_va"):
-            st.markdown("**Borrador de notificación al vecino** (editable antes de enviar)")
+            st.markdown("**Borrador – revisar antes de enviar**")
             t_es, t_va = st.tabs(["Castellano", "Valencià"])
             t_es.text_area("es", c.get("borrador_carta_es", ""), height=180, label_visibility="collapsed", key=f"es{sel}")
             t_va.text_area("va", c.get("borrador_carta_va", ""), height=180, label_visibility="collapsed", key=f"va{sel}")
@@ -174,7 +203,7 @@ with tab_nueva:
     if enviar and titulo:
         parecidas = buscar_parecidas(df, titulo, desc, distrito)
         if not parecidas.empty:
-            st.warning("🔁 **Ya hay propuestas parecidas en tu distrito.** Puedes apoyarlas en lugar de crear otra:")
+            st.info("🔁 **Hay propuestas parecidas en tu distrito.** Si quieres, puedes apoyarlas:")
             for _, r in parecidas.iterrows():
                 st.markdown(f"- #{r.id} **{r.titulo}** ({r.similitud:.0%} parecida)")
         nueva = {"id": str(1000 + len(st.session_state.extra) + 1), "titulo": titulo, "descripcion": desc,
@@ -187,12 +216,12 @@ with tab_nueva:
                 st.error(f"No se pudo clasificar en vivo: {e}")
                 res = None
         if res:
-            if res["estado_sugerido"] == "rechazo_sugerido":
-                st.error("⚠️ " + " ".join(cr["motivo"] for cr in res["criterios"].values() if cr.get("ok") is False))
-            elif res["estado_sugerido"] == "revisar":
-                st.warning("ℹ️ Un técnico revisará algún aspecto: " + res.get("resumen", ""))
-            else:
-                st.success("✅ Tu propuesta cumple los requisitos básicos.")
+            for a in res["alertas"]:
+                st.info(f"{ICONO[a['tipo']]} **Aviso orientativo:** {a['mensaje']}")
+            if not res["alertas"]:
+                st.success(f"✅ {SIN_ALERTAS}")
+            if res["alertas"] or not parecidas.empty:
+                st.markdown("**Puedes enviarla igualmente; un técnico la revisará.**")
             st.caption(f"⏱ {res.get('segundos', 0)} s · coste {res.get('coste_usd', 0):.5f} $ · {res.get('modelo')}")
             st.session_state.extra.append((nueva, res))
             st.info("La propuesta ya aparece en la bandeja del técnico.")
