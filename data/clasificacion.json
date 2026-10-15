@@ -1,0 +1,560 @@
+[
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "35,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "1"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "30,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "2"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "28,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "3"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": false,
+        "motivo": "Competencia de Estado (Demarcación de Costas).",
+        "norma": "Ley 22/1988 de Costas"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "40,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Lavabos en la playa de la Malvarrosa». Tras su revisión técnica, no puede pasar a votación: Competencia de Estado (Demarcación de Costas). (Ley 22/1988 de Costas). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Lavabos en la playa de la Malvarrosa». Després de la revisió tècnica, no pot passar a votació: Competencia de Estado (Demarcación de Costas). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "4"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": false,
+        "motivo": "Competencia de Estado (Demarcación de Costas).",
+        "norma": "Ley 22/1988 de Costas"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "25,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Duchas nuevas en la playa del Cabanyal». Tras su revisión técnica, no puede pasar a votación: Competencia de Estado (Demarcación de Costas). (Ley 22/1988 de Costas). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Duchas nuevas en la playa del Cabanyal». Després de la revisió tècnica, no pot passar a votació: Competencia de Estado (Demarcación de Costas). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "5"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": false,
+        "motivo": "Es gasto corriente o actividad, no una inversión.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "15,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Fiesta de barrio anual en Benimaclet». Tras su revisión técnica, no puede pasar a votación: Es gasto corriente o actividad, no una inversión. (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Fiesta de barrio anual en Benimaclet». Després de la revisió tècnica, no pot passar a votació: Es gasto corriente o actividad, no una inversión. Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "6"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": false,
+        "motivo": "Es gasto corriente o actividad, no una inversión.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "8,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Talleres de informática para mayores». Tras su revisión técnica, no puede pasar a votación: Es gasto corriente o actividad, no una inversión. (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Talleres de informática para mayores». Després de la revisió tècnica, no pot passar a votació: Es gasto corriente o actividad, no una inversión. Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "7"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "120,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "8"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": false,
+        "motivo": "Competencia de Generalitat (Conselleria de Educación).",
+        "norma": "Competencia autonómica en educación"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "90,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Climatizar las aulas del CEIP del barrio». Tras su revisión técnica, no puede pasar a votación: Competencia de Generalitat (Conselleria de Educación). (Competencia autonómica en educación). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Climatizar las aulas del CEIP del barrio». Després de la revisió tècnica, no pot passar a votació: Competencia de Generalitat (Conselleria de Educación). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "9"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "18,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "10"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "15,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "11"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "45,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "12"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": false,
+        "motivo": "Es gasto corriente o actividad, no una inversión.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "60,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Contratar monitores para el polideportivo». Tras su revisión técnica, no puede pasar a votación: Es gasto corriente o actividad, no una inversión. (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Contratar monitores para el polideportivo». Després de la revisió tècnica, no pot passar a votació: Es gasto corriente o actividad, no una inversión. Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "13"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": false,
+        "motivo": "Competencia de Estado (Adif/Renfe).",
+        "norma": "Ley 38/2015 del Sector Ferroviario"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": null,
+        "motivo": "200,000 € supera la asignación orientativa del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Pantallas acústicas junto a las vías del tren». Tras su revisión técnica, no puede pasar a votación: Competencia de Estado (Adif/Renfe). (Ley 38/2015 del Sector Ferroviario). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Pantallas acústicas junto a las vías del tren». Després de la revisió tècnica, no pot passar a votació: Competencia de Estado (Adif/Renfe). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "14"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "70,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "15"
+  },
+  {
+    "estado_sugerido": "viable",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "22,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.8,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "16"
+  },
+  {
+    "estado_sugerido": "revisar",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": true,
+        "motivo": "Bien construible/adquirible con vida útil > 1 año.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": null,
+        "motivo": "250,000 € supera la asignación orientativa del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.6,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "17"
+  },
+  {
+    "estado_sugerido": "rechazo_sugerido",
+    "criterios": {
+      "competencia": {
+        "ok": true,
+        "motivo": "Actuación en espacio público municipal.",
+        "norma": "Art. 25 Ley 7/1985 LBRL"
+      },
+      "inversion": {
+        "ok": false,
+        "motivo": "Es gasto corriente o actividad, no una inversión.",
+        "norma": "Bases VLCParticipa – proyectos de inversión"
+      },
+      "presupuesto": {
+        "ok": true,
+        "motivo": "3,000 € dentro de la asignación del distrito.",
+        "norma": "Bases – asignación por distrito"
+      }
+    },
+    "confianza": 0.85,
+    "resumen": "Clasificación simulada (sin LLM).",
+    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Pintar los bancos de la plaza». Tras su revisión técnica, no puede pasar a votación: Es gasto corriente o actividad, no una inversión. (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
+    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Pintar los bancos de la plaza». Després de la revisió tècnica, no pot passar a votació: Es gasto corriente o actividad, no una inversión. Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "coste_usd": 0.0,
+    "segundos": 0.0,
+    "modelo": "simulado",
+    "modo": "mock",
+    "id": "18"
+  }
+]
