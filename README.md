@@ -1,4 +1,4 @@
-# 🔍 Pre-filtro de propuestas VLCParticipa
+# 🔍 Garbell · Pre-filtro de propuestas VLCParticipa
 
 Asistente para la validación técnica de los presupuestos participativos de València ·
 **La IA señala, el técnico decide.** (ValènciaHack 2026, Reto 2)

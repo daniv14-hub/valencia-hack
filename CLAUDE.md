@@ -1,8 +1,8 @@
-# CLAUDE.md – Pre-filtro de propuestas VLCParticipa
+# CLAUDE.md – Garbell · Pre-filtro de propuestas VLCParticipa
 
 ## Contexto (no repetir en respuestas)
 - Hackathon ValènciaHack 2026 (Sigma Data Club, UPV, Cátedra Valent-IA, Ajuntament de València). Reto 2: modernizar la administración con tecnología. Jurado: personal del Ayuntamiento. Pitch de 2 min. Se valora más la idea que la ejecución; un chatbot NO vale.
-- Producto: **Pre-filtro de propuestas VLCParticipa** 🔍, un pre-filtro de IA para la validación técnica de propuestas de VLCParticipa (presupuestos participativos, plataforma CONSUL). Edición 2025-26: 2.777 propuestas, 1.441 en validación técnica manual, 248 aprobadas.
+- Producto: **Garbell · Pre-filtro de propuestas VLCParticipa** 🔍 (Garbell solo en la presentación: app, README y CLAUDE.md; el prompt de sistema de `classify.py` no lo menciona para no cambiar el hash de la caché), un pre-filtro de IA para la validación técnica de propuestas de VLCParticipa (presupuestos participativos, plataforma CONSUL). Edición 2025-26: 2.777 propuestas, 1.441 en validación técnica manual, 248 aprobadas.
 - Principio: **la IA señala, el técnico decide**. La IA no decide nada: solo señala alertas. El técnico revisa todas las propuestas y toma todas las decisiones.
 - Nombres únicos de alerta en todo el proyecto: 🔁 `duplicado` (la calcula la app con `duplicates.py`, no el LLM), 🏛️ `fuera_competencia` (otra administración), 💶 `fuera_presupuesto` (supera la partida oficial del distrito; sin presupuesto = nota informativa, no alerta), 🎉 `no_inversion` (actividad, gasto corriente, mantenimiento). Sin alertas = «Sin alertas · a priori viable».
 - Objetivo de la demo: un panel web que muestre al funcionario las propuestas con sus alertas y agrupadas, más una vista del vecino con avisos en vivo.

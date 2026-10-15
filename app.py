@@ -1,4 +1,4 @@
-"""Pre-filtro de propuestas VLCParticipa – panel del técnico municipal.
+"""Garbell · Pre-filtro de propuestas VLCParticipa – panel del técnico municipal.
 
 Ejecutar:  streamlit run app.py
 """
@@ -31,7 +31,7 @@ SIN_ALERTAS = "Sin alertas · a priori viable"
 ADMIN = {"FGV": "Ferrocarrils de la Generalitat Valenciana (FGV)"}  # solo presentación; los datos no cambian
 AVISO_VECINO = "Puedes enviarla igualmente; un técnico la revisará."
 
-st.set_page_config(page_title="Pre-filtro de propuestas VLCParticipa", page_icon=":material/search:", layout="wide")
+st.set_page_config(page_title="Garbell · Pre-filtro de propuestas VLCParticipa", page_icon=":material/search:", layout="wide")
 st.markdown(f"""<style>
 .stApp {{background:{FONDO};}}
 [data-testid='stDecoration'] {{display:none;}}
@@ -151,7 +151,7 @@ df["tipos"] = df["alertas"].map(lambda al: {a["tipo"] for a in al})
 df["decision"] = [decision(r) for r in df.itertuples()]
 
 # ---------- Cabecera ----------
-st.markdown(f"<div class='cab'><div class='t'>{mi('search')}Pre-filtro de propuestas VLCParticipa</div>"
+st.markdown(f"<div class='cab'><div class='t'>{mi('search')}Garbell · Pre-filtro de propuestas VLCParticipa</div>"
             "<div class='s'>Asistente para la validación técnica de los presupuestos participativos de València · "
             "<b>La IA señala, el técnico decide</b></div></div>", unsafe_allow_html=True)
 
