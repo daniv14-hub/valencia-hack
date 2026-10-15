@@ -1,309 +1,1302 @@
 [
   {
+    "id": "R01",
     "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "puntos_a_revisar": [
+      "Viabilidad técnica de la peatonalización en la zona de La Roqueta",
+      "Posible impacto en el tráfico y accesibilidad"
+    ],
+    "resumen": "La propuesta de peatonalización de La Roqueta en Extramurs parece ser una inversión y estar dentro de la competencia municipal, sin alertas claras de presupuesto.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "1"
+    "coste_usd": 0.0008594,
+    "segundos": 1.72,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "R02",
     "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "puntos_a_revisar": [
+      "Revisar si el 'cami del pou' es de titularidad municipal.",
+      "Revisar si la propuesta ya está prevista o fue declarada inviable en ediciones anteriores."
+    ],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal, sin alertas claras. Se recomienda revisar la titularidad del terreno y si ya está prevista.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "2"
+    "coste_usd": 0.0008846,
+    "segundos": 2.26,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "R03",
     "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "puntos_a_revisar": [
+      "Si el solar propuesto es municipal",
+      "Si la obra ya está prevista y presupuestada"
+    ],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "3"
+    "coste_usd": 0.0008073,
+    "segundos": 5.02,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "R04",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007427,
+    "segundos": 4.38,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R05",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y está dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007372,
+    "segundos": 6.1,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R06",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007391,
+    "segundos": 6.67,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R07",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007402,
+    "segundos": 7.45,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R08",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007445,
+    "segundos": 3.54,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R09",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Comprobar si la propuesta ya está prevista o fue declarada inviable en ediciones anteriores.",
+      "Verificar la viabilidad técnica de la mejora del entorno del colegio."
+    ],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito, pero se recomienda revisar si ya está prevista o si es técnicamente viable.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008783,
+    "segundos": 4.56,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R10",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007397,
+    "segundos": 8.66,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R11",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y competencia municipal, y el presupuesto estimado está dentro del límite del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007452,
+    "segundos": 5.24,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R12",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal, sin alertas claras de presupuesto.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.000744,
+    "segundos": 1.05,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R13",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y no presenta alertas claras de fuera de competencia o presupuesto desproporcionado.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007529,
+    "segundos": 4.82,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R14",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y no presenta alertas claras de fuera de competencia o presupuesto.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.00047217,
+    "segundos": 5.01,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R15",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y no presenta alertas claras de competencia o presupuesto desproporcionado.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.000744,
+    "segundos": 4.75,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R16",
     "alertas": [
       {
-        "tipo": "competencia",
-        "mensaje": "Parece competencia de Estado (Demarcación de Costas).",
-        "norma": "Ley 22/1988 de Costas",
-        "administracion": "Estado (Demarcación de Costas)",
-        "confianza": 0.85
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Estado-Costas)",
+        "mensaje": "La gestión de las playas y el dominio público marítimo-terrestre es competencia de Costas (Estado).",
+        "norma": "Playas y dominio público marítimo-terrestre (Costas, Estado).",
+        "administracion": "Estado-Costas"
       }
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Lavabos en la playa de la Malvarrosa». Tras su revisión técnica, no puede pasar a votación porque es competencia de Estado (Demarcación de Costas) (Ley 22/1988 de Costas). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Lavabos en la playa de la Malvarrosa». Després de la revisió tècnica, no pot passar a votació perquè és competència de Estado (Demarcación de Costas) (Ley 22/1988 de Costas). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "4"
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser competencia de Costas (Estado).",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por tu propuesta. Te informamos que la instalación de lavabos en las playas podría no ser competencia municipal, ya que la gestión del dominio público marítimo-terrestre suele recaer en Costas (Estado). Te animamos a revisar las bases para futuras propuestas.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la teua proposta. T'informem que la instal·lació de lavabos a les platges podria no ser competència municipal, ja que la gestió del domini públic marítim-terrestre sol recaure en Costes (Estat). T'animem a revisar les bases per a futures propostes.",
+    "coste_usd": 0.0013722,
+    "segundos": 5.58,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
-    "alertas": [
-      {
-        "tipo": "competencia",
-        "mensaje": "Parece competencia de Estado (Demarcación de Costas).",
-        "norma": "Ley 22/1988 de Costas",
-        "administracion": "Estado (Demarcación de Costas)",
-        "confianza": 0.85
-      }
+    "id": "R17",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Revisar si la propuesta es viable técnicamente en los emplazamientos propuestos.",
+      "Revisar si los solares son de titularidad municipal."
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Duchas nuevas en la playa del Cabanyal». Tras su revisión técnica, no puede pasar a votación porque es competencia de Estado (Demarcación de Costas) (Ley 22/1988 de Costas). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Duchas nuevas en la playa del Cabanyal». Després de la revisió tècnica, no pot passar a votació perquè és competència de Estado (Demarcación de Costas) (Ley 22/1988 de Costas). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "5"
+    "resumen": "La propuesta parece ser una inversión y no presenta alertas claras de competencia o presupuesto, pero requiere revisión de la viabilidad técnica y titularidad de los solares.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008815,
+    "segundos": 3.35,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "R18",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007305,
+    "segundos": 1.15,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R19",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Viabilidad técnica de los rediseños propuestos",
+      "Si los carriles bici problemáticos ya están identificados o en proceso de revisión por el ayuntamiento"
+    ],
+    "resumen": "La propuesta parece ser una inversión y de competencia municipal, pero requiere revisión técnica para determinar la viabilidad y si ya hay planes en marcha.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008713,
+    "segundos": 1.69,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R20",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y no presenta alertas claras de competencia o presupuesto.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007321,
+    "segundos": 1.16,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R21",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y no presenta alertas claras de fuera de competencia o presupuesto.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007431,
+    "segundos": 10.97,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R22",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y de competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007378,
+    "segundos": 6.04,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R23",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y es de competencia municipal.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007197,
+    "segundos": 2.12,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R24",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Revisar si la propuesta se refiere a El Palmar como pedanía de València o a la zona de la Albufera, que podría implicar a otras administraciones."
+    ],
+    "resumen": "La propuesta parece una inversión y no presenta alertas claras de fuera de competencia o presupuesto, pero requiere aclaración sobre el ámbito geográfico exacto para descartar implicación de otras administraciones.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008982,
+    "segundos": 1.57,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R25",
     "alertas": [
       {
         "tipo": "no_inversion",
-        "mensaje": "Parece gasto corriente o actividad, no una inversión.",
-        "norma": "Bases VLCParticipa – proyectos de inversión",
-        "confianza": 0.8
+        "texto": "Posible no inversión",
+        "mensaje": "La renovación de una colección de libros se considera material no inventariable.",
+        "norma": "NO son inversión: Material no inventariable (material escolar, suministros como energía)."
       }
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Fiesta de barrio anual en Benimaclet». Tras su revisión técnica, no puede pasar a votación porque no es un proyecto de inversión (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Fiesta de barrio anual en Benimaclet». Després de la revisió tècnica, no pot passar a votació perquè no és un projecte d'inversió (Bases VLCParticipa – proyectos de inversión). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "6"
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece no ser una inversión, ya que se refiere a la renovación de una colección de libros.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que la renovación de colecciones de libros podría no considerarse una inversión según las bases de los presupuestos participativos, ya que se trata de material no inventariable. Le animamos a revisar las bases y, si lo desea, reformular su propuesta para que se ajuste a los criterios de inversión.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que la renovació de col·leccions de llibres podria no considerar-se una inversió segons les bases dels pressupostos participatius, ja que es tracta de material no inventariable. L'animem a revisar les bases i, si ho desitja, reformular la seua proposta perquè s'ajuste als criteris d'inversió.",
+    "coste_usd": 0.0014375,
+    "segundos": 9.19,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
-    "alertas": [
-      {
-        "tipo": "no_inversion",
-        "mensaje": "Parece gasto corriente o actividad, no una inversión.",
-        "norma": "Bases VLCParticipa – proyectos de inversión",
-        "confianza": 0.8
-      }
+    "id": "R26",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Si la propuesta se refiere a la construcción de una nueva biblioteca o a la mejora de una existente, ya que la construcción de centros educativos y culturales es competencia de la Generalitat, mientras que el mantenimiento de colegios públicos es municipal pero no es inversión."
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Talleres de informática para mayores». Tras su revisión técnica, no puede pasar a votación porque no es un proyecto de inversión (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Talleres de informática para mayores». Després de la revisió tècnica, no pot passar a votació perquè no és un projecte d'inversió (Bases VLCParticipa – proyectos de inversión). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "7"
-  },
-  {
-    "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "resumen": "La propuesta parece ser una inversión, pero se debe revisar si la construcción o mejora de una biblioteca es competencia municipal o de la Generalitat.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "8"
+    "coste_usd": 0.0009101,
+    "segundos": 2.23,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
-    "alertas": [
-      {
-        "tipo": "competencia",
-        "mensaje": "Parece competencia de Generalitat (Conselleria de Educación).",
-        "norma": "Competencia autonómica en educación",
-        "administracion": "Generalitat (Conselleria de Educación)",
-        "confianza": 0.85
-      }
+    "id": "R27",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Viabilidad técnica de la remodelación del Gulliver",
+      "Si la remodelación ya está prevista o en curso"
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Climatizar las aulas del CEIP del barrio». Tras su revisión técnica, no puede pasar a votación porque es competencia de Generalitat (Conselleria de Educación) (Competencia autonómica en educación). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Climatizar las aulas del CEIP del barrio». Després de la revisió tècnica, no pot passar a votació perquè és competència de Generalitat (Conselleria de Educación) (Competencia autonómica en educación). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "9"
-  },
-  {
-    "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "resumen": "La propuesta parece ser una inversión y de competencia municipal, pero se recomienda revisar la viabilidad técnica y si ya está prevista.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "10"
+    "coste_usd": 0.0008334,
+    "segundos": 1.54,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "R28",
     "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y no presenta alertas claras de competencia o presupuesto.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "11"
+    "coste_usd": 0.0007396,
+    "segundos": 1.61,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "R29",
     "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y no presenta alertas claras de fuera de competencia o presupuesto.",
     "borrador_carta_es": "",
     "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "12"
+    "coste_usd": 0.00047687,
+    "segundos": 3.94,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
-    "alertas": [
-      {
-        "tipo": "no_inversion",
-        "mensaje": "Parece gasto corriente o actividad, no una inversión.",
-        "norma": "Bases VLCParticipa – proyectos de inversión",
-        "confianza": 0.8
-      }
+    "id": "R30",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y de competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007372,
+    "segundos": 1.59,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "R31",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007262,
+    "segundos": 1.1,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S01",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión municipal y no presenta alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007286,
+    "segundos": 1.6,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S02",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión municipal y no presenta alertas iniciales.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007268,
+    "segundos": 1.25,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S03",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007454,
+    "segundos": 7.86,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S04",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión de competencia municipal y el presupuesto estimado está dentro de los límites del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007479,
+    "segundos": 8.62,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S05",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y competencia municipal, y el presupuesto estimado está dentro del límite del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007473,
+    "segundos": 7.01,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S06",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y es competencia municipal, dentro del presupuesto estimado.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007324,
+    "segundos": 9.49,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S07",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Comprobar la titularidad del solar o parque propuesto para la zona vallada.",
+      "Evaluar la viabilidad técnica del emplazamiento para la instalación de un pipicán."
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Contratar monitores para el polideportivo». Tras su revisión técnica, no puede pasar a votación porque no es un proyecto de inversión (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Contratar monitores para el polideportivo». Després de la revisió tècnica, no pot passar a votació perquè no és un projecte d'inversió (Bases VLCParticipa – proyectos de inversión). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "13"
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008577,
+    "segundos": 6.03,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "S08",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Comprobar si el solar propuesto es municipal",
+      "Verificar la viabilidad técnica del emplazamiento"
+    ],
+    "resumen": "La propuesta parece ser una inversión y competencia municipal, pero se deben revisar aspectos como la titularidad del solar y la viabilidad técnica.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008402,
+    "segundos": 8.12,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S09",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y es competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007269,
+    "segundos": 5.24,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S10",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007302,
+    "segundos": 6.81,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S11",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007268,
+    "segundos": 1.43,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S12",
     "alertas": [
       {
-        "tipo": "competencia",
-        "mensaje": "Parece competencia de Estado (Adif/Renfe).",
-        "norma": "Ley 38/2015 del Sector Ferroviario",
-        "administracion": "Estado (Adif/Renfe)",
-        "confianza": 0.85
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Estado-Costas)",
+        "mensaje": "La propuesta de construir espigones en la playa de la Malvarrosa parece ser competencia de la administración estatal, específicamente de Costas.",
+        "norma": "Las playas y el dominio público marítimo-terrestre son competencia de Costas (Estado).",
+        "administracion": "Estado-Costas"
       },
       {
-        "tipo": "presupuesto",
-        "mensaje": "200,000 € supera el umbral orientativo de 160.000 €.",
-        "norma": "Bases – asignación por distrito",
-        "confianza": 0.7
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El presupuesto estimado por el vecino (1.500.000 €) supera el presupuesto disponible para el distrito de Poblats Marítims (1.205.469 €).",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
       }
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Pantallas acústicas junto a las vías del tren». Tras su revisión técnica, no puede pasar a votación porque es competencia de Estado (Adif/Renfe) (Ley 38/2015 del Sector Ferroviario). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Pantallas acústicas junto a las vías del tren». Després de la revisió tècnica, no pot passar a votació perquè és competència de Estado (Adif/Renfe) (Ley 38/2015 del Sector Ferroviario). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "14"
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser competencia de la administración estatal y el presupuesto estimado excede el límite del distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que la construcción de espigones en la playa podría no ser competencia municipal, sino de la administración estatal (Costas). Además, el presupuesto estimado para esta intervención parece superar el límite asignado a su distrito. Le animamos a revisar su propuesta o a considerar otras ideas que se ajusten a las competencias municipales y al presupuesto disponible.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que la construcció d'espigons a la platja podria no ser competència municipal, sinó de l'administració estatal (Costes). A més, el pressupost estimat per a aquesta intervenció sembla superar el límit assignat al seu districte. L'animem a revisar la seua proposta o a considerar altres idees que s'ajusten a les competències municipals i al pressupost disponible.",
+    "coste_usd": 0.001813,
+    "segundos": 2.91,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
-    "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "",
-    "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "15"
-  },
-  {
-    "alertas": [],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "",
-    "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "16"
-  },
-  {
+    "id": "S13",
     "alertas": [
       {
-        "tipo": "presupuesto",
-        "mensaje": "250,000 € supera el umbral orientativo de 160.000 €.",
-        "norma": "Bases – asignación por distrito",
-        "confianza": 0.7
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Estado-Costas)",
+        "mensaje": "La gestión de playas y el dominio público marítimo-terrestre es competencia de Costas (Estado).",
+        "norma": "Playas y dominio público marítimo-terrestre (Costas, Estado).",
+        "administracion": "Estado-Costas"
+      },
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El presupuesto estimado por el vecino (900.000 €) supera el presupuesto disponible del distrito (896.387 €).",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
       }
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "",
-    "borrador_carta_va": "",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "17"
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser competencia de otra administración y el presupuesto estimado por el vecino excede ligeramente el disponible para el distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por tu propuesta. Te informamos que la gestión de las playas y el dominio público marítimo-terrestre podría no ser competencia municipal, sino de la administración estatal (Costas). Además, el presupuesto estimado para esta intervención podría superar ligeramente el límite asignado a tu distrito. Te animamos a reformular tu propuesta teniendo en cuenta estas consideraciones.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la teua proposta. T'informem que la gestió de les platges i el domini públic marítim-terrestre podria no ser competència municipal, sinó de l'administració estatal (Costes). A més, el pressupost estimat per a aquesta intervenció podria superar lleugerament el límit assignat al teu districte. T'animem a reformular la teua proposta tenint en compte aquestes consideracions.",
+    "coste_usd": 0.0017496,
+    "segundos": 3.55,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   },
   {
+    "id": "S14",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Generalitat)",
+        "mensaje": "La construcción de centros educativos como institutos es competencia de la Generalitat Valenciana.",
+        "norma": "Es motivo de desestimación que la ejecución requiera implicar a otras administraciones.",
+        "administracion": "Generalitat"
+      },
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El presupuesto estimado de 6.000.000 € excede el presupuesto disponible del distrito de Quatre Carreres (1.475.031 €).",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta de construir un instituto en Malilla parece exceder el presupuesto del distrito y podría no ser competencia municipal.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Queremos informarle que la construcción de un instituto podría no ser competencia del Ayuntamiento de València, sino de la Generalitat Valenciana. Además, el presupuesto estimado para una obra de esta envergadura parece superar la cantidad asignada a su distrito en los presupuestos participativos. Le animamos a presentar propuestas que se ajusten a las competencias municipales y al presupuesto disponible.",
+    "borrador_carta_va": "Estimat/da veí/na, gràcies per la seua proposta. Volem informar-li que la construcció d'un institut podria no ser competència de l'Ajuntament de València, sinó de la Generalitat Valenciana. A més, el pressupost estimat per a una obra d'aquesta envergadura sembla superar la quantitat assignada al seu districte en els pressupostos participatius. L'animem a presentar propostes que s'ajusten a les competències municipals i al pressupost disponible.",
+    "coste_usd": 0.0018109,
+    "segundos": 9.01,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S15",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Generalitat)",
+        "mensaje": "La construcción de centros de salud es competencia de la Generalitat Valenciana.",
+        "norma": "Centros de salud, hospitales (Generalitat).",
+        "administracion": "Generalitat"
+      },
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El coste estimado de 3.500.000 € supera el presupuesto disponible del distrito de 1.205.469 €.",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta de construir un centro de salud en el Grau parece ser competencia de la Generalitat y su coste estimado excede el presupuesto del distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por tu propuesta. Te informamos que la construcción de centros de salud podría no ser competencia municipal, sino de la Generalitat Valenciana. Además, el presupuesto estimado para esta iniciativa parece superar la cantidad asignada a tu distrito. Te animamos a revisar las bases de VLCParticipa para futuras propuestas.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la teua proposta. T'informem que la construcció de centres de salut podria no ser competència municipal, sinó de la Generalitat Valenciana. A més, el pressupost estimat per a aquesta iniciativa sembla superar la quantitat assignada al teu districte. T'animem a revisar les bases de VLCParticipa per a futures propostes.",
+    "coste_usd": 0.0016653,
+    "segundos": 2.98,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S16",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Generalitat)",
+        "mensaje": "La construcción o ampliación de centros educativos es competencia de la Generalitat Valenciana.",
+        "norma": "Construir o ampliar centros es de la Generalitat.",
+        "administracion": "Generalitat"
+      },
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El coste estimado de 1.200.000 € supera el presupuesto de 1.103.863 € asignado al distrito de Benicalap.",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      }
+    ],
+    "puntos_a_revisar": [
+      "Revisar si el mantenimiento de colegios públicos es municipal, aunque la construcción no lo sea."
+    ],
+    "resumen": "La propuesta de construir un aulario nuevo en un colegio público de Benicalap parece ser competencia de la Generalitat y el presupuesto estimado excede el disponible para el distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por tu propuesta. Queremos informarte que la construcción de un aulario nuevo para un colegio público podría no ser competencia municipal, sino de la Generalitat Valenciana. Además, el presupuesto estimado para esta intervención parece superar el límite asignado a tu distrito. Te animamos a revisar las bases de los presupuestos participativos para futuras propuestas.",
+    "borrador_carta_va": "Estimat/da veí/na, gràcies per la teua proposta. Volem informar-te que la construcció d'un aulari nou per a un col·legi públic podria no ser competència municipal, sinó de la Generalitat Valenciana. A més, el pressupost estimat per a aquesta intervenció sembla superar el límit assignat al teu districte. T'animem a revisar les bases dels pressupostos participatius per a futures propostes.",
+    "coste_usd": 0.0018371,
+    "segundos": 3.34,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S17",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (FGV)",
+        "mensaje": "La red de metro es competencia de FGV, no del Ayuntamiento de València.",
+        "norma": "Fuera de competencia: Red de Metro o ferrocarril (FGV, Adif), infraestructuras de acceso a València.",
+        "administracion": "FGV"
+      },
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El presupuesto estimado de 8.000.000 € supera con creces el presupuesto de 623.387 € asignado al distrito de Campanar.",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta de una nueva parada de metro en Campanar-Tendetes parece ser competencia de FGV y excede el presupuesto del distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que la creación de una nueva parada de metro podría no ser competencia municipal, ya que la red de metro es gestionada por FGV. Además, el presupuesto estimado para una obra de esta envergadura superaría el importe asignado a su distrito en los presupuestos participativos. Le animamos a presentar otras propuestas que se ajusten a las bases.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que la creació d'una nova parada de metro podria no ser competència municipal, ja que la xarxa de metro és gestionada per FGV. A més, el pressupost estimat per a una obra d'esta envergadura superaria l'import assignat al seu districte en els pressupostos participatius. L'animem a presentar altres propostes que s'ajusten a les bases.",
+    "coste_usd": 0.0018084,
+    "segundos": 6.77,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S18",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (FGV)",
+        "mensaje": "La red de Metro o ferrocarril (FGV) no es competencia del Ayuntamiento de València.",
+        "norma": "Fuera de competencia: Red de Metro o ferrocarril (FGV, Adif), infraestructuras de acceso a València.",
+        "administracion": "FGV"
+      },
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "Aumentar la frecuencia de un servicio de transporte es una actividad o servicio, no una inversión construible o adquirible.",
+        "norma": "NO son inversión: Programas o actividades, servicios (p. ej. más limpieza, más personal)."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece no ser una inversión y podría ser competencia de FGV.",
+    "borrador_carta_es": "Gracias por tu propuesta. Te informamos que, según las bases de VLCParticipa, tu idea podría no ser una inversión, ya que se refiere a la frecuencia de un servicio y no a la construcción o adquisición de algo perdurable. Además, la gestión de la red de metro y tranvía es competencia de Ferrocarrils de la Generalitat Valenciana (FGV), no del Ayuntamiento. Te animamos a presentar propuestas que sean inversiones y competencia municipal.",
+    "borrador_carta_va": "Gràcies per la teua proposta. T'informem que, segons les bases de VLCParticipa, la teua idea podria no ser una inversió, ja que es refereix a la freqüència d'un servei i no a la construcció o adquisició d'alguna cosa perdurable. A més, la gestió de la xarxa de metro i tramvia és competència de Ferrocarrils de la Generalitat Valenciana (FGV), no de l'Ajuntament. T'animem a presentar propostes que siguen inversions i competència municipal.",
+    "coste_usd": 0.0017991,
+    "segundos": 4.19,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S19",
+    "alertas": [
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El coste estimado de 20.000.000 € supera ampliamente el presupuesto disponible del distrito de Quatre Carreres (1.475.031 €).",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      },
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Adif)",
+        "mensaje": "Las infraestructuras ferroviarias como las vías del tren suelen ser competencia de administraciones como Adif o el Estado.",
+        "norma": "Red de Metro o ferrocarril (FGV, Adif), infraestructuras de acceso a València no son competencia municipal.",
+        "administracion": "Adif"
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece exceder el presupuesto del distrito y podría no ser competencia municipal, ya que se refiere a infraestructuras ferroviarias.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Queremos informarle que, según una primera revisión, soterrar las vías del tren podría exceder el presupuesto asignado a su distrito y, además, este tipo de infraestructuras ferroviarias suelen ser competencia de otras administraciones (como Adif o el Estado) y no del Ayuntamiento. Le animamos a presentar otras ideas que se ajusten a las competencias municipales y al presupuesto disponible para su distrito.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Volem informar-li que, segons una primera revisió, soterrar les vies del tren podria excedir el pressupost assignat al seu districte i, a més, aquest tipus d'infraestructures ferroviàries solen ser competència d'altres administracions (com Adif o l'Estat) i no de l'Ajuntament. L'animem a presentar altres idees que s'ajusten a les competències municipals i al pressupost disponible per al seu districte.",
+    "coste_usd": 0.001899,
+    "segundos": 4.71,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S20",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Autoridad Portuaria)",
+        "mensaje": "La propuesta implica a la Autoridad Portuaria, que es una administración diferente al Ayuntamiento de València.",
+        "norma": "También es motivo de desestimación que la ejecución requiera implicar a otras administraciones.",
+        "administracion": "Autoridad Portuaria"
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece requerir la implicación de la Autoridad Portuaria, lo que podría ser un motivo de desestimación.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Queríamos informarle que la intervención que plantea en los terrenos del puerto podría no ser competencia municipal, ya que implicaría a la Autoridad Portuaria. Le animamos a revisar las bases de VLCParticipa para futuras propuestas.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Volíem informar-li que la intervenció que planteja en els terrenys del port podria no ser competència municipal, ja que implicaria l'Autoritat Portuària. L'animem a revisar les bases de VLCParticipa per a futures propostes.",
+    "coste_usd": 0.0013833,
+    "segundos": 4.7,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S21",
     "alertas": [
       {
         "tipo": "no_inversion",
-        "mensaje": "Parece gasto corriente o actividad, no una inversión.",
-        "norma": "Bases VLCParticipa – proyectos de inversión",
-        "confianza": 0.8
+        "texto": "Posible no inversión",
+        "mensaje": "La propuesta describe una actividad o evento, no una inversión en infraestructura o equipamiento perdurable.",
+        "norma": "NO son inversión: Programas o actividades: cursos, actividades culturales o de ocio, fiestas, campañas de sensibilización, eventos deportivos."
       }
     ],
-    "resumen": "Pre-filtro simulado (sin LLM).",
-    "borrador_carta_es": "Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «Pintar los bancos de la plaza». Tras su revisión técnica, no puede pasar a votación porque no es un proyecto de inversión (Bases VLCParticipa – proyectos de inversión). Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana",
-    "borrador_carta_va": "Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «Pintar los bancos de la plaza». Després de la revisió tècnica, no pot passar a votació perquè no és un projecte d'inversió (Bases VLCParticipa – proyectos de inversión). Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana",
-    "tokens_in": 0,
-    "tokens_out": 0,
-    "coste_usd": 0.0,
-    "segundos": 0.0,
-    "modelo": "simulado",
-    "modo": "mock",
-    "id": "18"
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una actividad o evento, lo que podría no considerarse una inversión según las bases.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Queremos informarle que, según las bases de los presupuestos participativos, las fiestas y actividades culturales podrían no considerarse una inversión, ya que se centran en la construcción o adquisición de bienes perdurables. Le animamos a revisar las bases para futuras propuestas.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Volem informar-li que, segons les bases dels pressupostos participatius, les festes i activitats culturals podrien no considerar-se una inversió, ja que se centren en la construcció o adquisició de béns perdurables. L'animem a revisar les bases per a futures propostes.",
+    "coste_usd": 0.0013781,
+    "segundos": 2.33,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S22",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La propuesta describe un programa o actividad (clases gratuitas de robótica), lo cual no se considera una inversión según las bases.",
+        "norma": "NO son inversión: Programas o actividades: cursos, actividades culturales o de ocio, fiestas, campañas de sensibilización, eventos deportivos."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una actividad o programa y no una inversión, lo que podría ser un motivo de alerta.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que, según las bases de VLCParticipa, las actividades o programas como talleres y cursos no se consideran inversiones. Las propuestas deben ser para construir o adquirir algo perdurable para la ciudad. Podría reformular su propuesta pensando en una inversión, como la adquisición de material de robótica inventariable para el centro, o la mejora de sus instalaciones.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que, segons les bases de VLCParticipa, les activitats o programes com tallers i cursos no es consideren inversions. Les propostes han de ser per a construir o adquirir alguna cosa perdurable per a la ciutat. Podria reformular la seua proposta pensant en una inversió, com l'adquisició de material de robòtica inventariable per al centre, o la millora de les seues instal·lacions.",
+    "coste_usd": 0.0015341,
+    "segundos": 3.82,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S23",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La contratación de personal no se considera una inversión según las bases.",
+        "norma": "NO son inversión: Contratación de personal."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece no ser una inversión al tratarse de contratación de personal.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que la contratación de personal, como la de socorristas, podría no considerarse una inversión según las bases de los presupuestos participativos. Las propuestas deben ser para construir o adquirir algo perdurable. Le animamos a reformular su propuesta pensando en una inversión para la piscina, como mejoras en sus instalaciones o equipamiento.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que la contractació de personal, com la de socorristes, podria no considerar-se una inversió segons les bases dels pressupostos participatius. Les propostes han de ser per a construir o adquirir alguna cosa perdurable. L'animem a reformular la seua proposta pensant en una inversió per a la piscina, com ara millores en les seues instal·lacions o equipament.",
+    "coste_usd": 0.00142,
+    "segundos": 4.21,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S24",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "El repintado de pasos de peatones se considera mantenimiento ordinario.",
+        "norma": "El mantenimiento, conservación o limpieza de edificios, parques, vehículos o mobiliario no son inversión."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una acción de mantenimiento y no una inversión.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que el repintado de pasos de peatones podría considerarse una tarea de mantenimiento ordinario y no una inversión, según las bases de los presupuestos participativos. Las propuestas deben ser para construir o adquirir algo perdurable. Le animamos a presentar nuevas ideas que se ajusten a estos criterios.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que el repintat de passos de vianants podria considerar-se una tasca de manteniment ordinari i no una inversió, segons les bases dels pressupostos participatius. Les propostes han de ser per a construir o adquirir alguna cosa perdurable. L'animem a presentar noves idees que s'ajusten a aquests criteris.",
+    "coste_usd": 0.0013812,
+    "segundos": 4.98,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S25",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La reparación de baldosas se considera mantenimiento, no una inversión perdurable o una obra nueva.",
+        "norma": "El mantenimiento, conservación o limpieza de edificios, parques, vehículos o mobiliario no son inversión."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una acción de mantenimiento y no una inversión, lo que podría no ajustarse a los criterios de los presupuestos participativos.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Queremos informarle que la reparación de baldosas se considera habitualmente una tarea de mantenimiento. Los presupuestos participativos están destinados a inversiones, es decir, a proyectos que el Ayuntamiento pueda construir o adquirir y que sean perdurables en el tiempo. Le animamos a revisar las bases y, si lo desea, reformular su propuesta para que se ajuste a los criterios de inversión.",
+    "borrador_carta_va": "Estimat/da veí/na, gràcies per la seua proposta. Volem informar-li que la reparació de rajoles es considera habitualment una tasca de manteniment. Els pressupostos participatius estan destinats a inversions, és a dir, a projectes que l'Ajuntament puga construir o adquirir i que siguen perdurables en el temps. L'animem a revisar les bases i, si ho desitja, reformular la seua proposta perquè s'ajuste als criteris d'inversió.",
+    "coste_usd": 0.0015118,
+    "segundos": 11.88,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S26",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La propuesta se refiere a un servicio de limpieza, que no se considera una inversión según las bases.",
+        "norma": "NO son inversión: Mantenimiento, conservación o limpieza de edificios, parques, vehículos o mobiliario."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece no ser una inversión al tratarse de un servicio de limpieza.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por tu propuesta. Te informamos que, según las bases de los presupuestos participativos, el aumento de la frecuencia de limpieza podría no considerarse una inversión, ya que se trata de un gasto corriente o un servicio. Las propuestas deben ser para construir o adquirir algo perdurable. Te animamos a reformular tu propuesta pensando en una inversión para el barrio.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la teua proposta. T'informem que, segons les bases dels pressupostos participatius, l'augment de la freqüència de neteja podria no considerar-se una inversió, ja que es tracta d'una despesa corrent o un servei. Les propostes han de ser per a construir o adquirir alguna cosa perdurable. T'animem a reformular la teua proposta pensant en una inversió per al barri.",
+    "coste_usd": 0.0014688,
+    "segundos": 5.25,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S27",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La propuesta se refiere a la contratación de personal o un servicio, no a una inversión en infraestructura o equipamiento.",
+        "norma": "NO son inversión: Contratación de personal. Contratación externa de empresas o autónomos para servicios. Servicios (p. ej. más limpieza, más personal)."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece no ser una inversión, ya que solicita un servicio o contratación de personal.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que la creación de una patrulla fija de policía local podría no considerarse una inversión según las bases de los presupuestos participativos, ya que se refiere a la contratación de personal o un servicio. Las bases establecen que las propuestas deben ser para construir o adquirir algo perdurable. Le animamos a reformular su propuesta enfocándola en una inversión que mejore el barrio, como mobiliario urbano, parques o equipamientos.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que la creació d'una patrulla fixa de policia local podria no considerar-se una inversió segons les bases dels pressupostos participatius, ja que es refereix a la contractació de personal o un servei. Les bases estableixen que les propostes han de ser per a construir o adquirir alguna cosa perdurable. L'animem a reformular la seua proposta enfocant-la en una inversió que millore el barri, com ara mobiliari urbà, parcs o equipaments.",
+    "coste_usd": 0.0015904,
+    "segundos": 2.77,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S28",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La propuesta describe un ciclo de conciertos, que son programas o actividades.",
+        "norma": "NO son inversión: Programas o actividades: cursos, actividades culturales o de ocio, fiestas, campañas de sensibilización, eventos deportivos."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una actividad cultural y no una inversión.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que, según las bases de los presupuestos participativos, las actividades culturales como conciertos podrían no considerarse una inversión. Las propuestas deben ser para construir o adquirir algo perdurable para la ciudad. Le animamos a reformular su propuesta pensando en una inversión que beneficie al barrio.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que, segons les bases dels pressupostos participatius, les activitats culturals com concerts podrien no considerar-se una inversió. Les propostes han de ser per a construir o adquirir alguna cosa perdurable per a la ciutat. L'animem a reformular la seua proposta pensant en una inversió que beneficie al barri.",
+    "coste_usd": 0.00111447,
+    "segundos": 3.02,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S29",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La propuesta se refiere a la organización de cursos, que son programas o actividades.",
+        "norma": "NO son inversión: Programas o actividades: cursos, actividades culturales o de ocio, fiestas, campañas de sensibilización, eventos deportivos."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una actividad o programa y no una inversión.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Le informamos que la organización de cursos podría no considerarse una inversión según las bases de los presupuestos participativos, ya que se enfoca en programas o actividades. Las propuestas deben ser para construir o adquirir algo perdurable. Le animamos a reformular su propuesta pensando en una inversión para el barrio.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. L'informem que l'organització de cursos podria no considerar-se una inversió segons les bases dels pressupostos participatius, ja que se centra en programes o activitats. Les propostes han de ser per a construir o adquirir alguna cosa perdurable. L'animem a reformular la seua proposta pensant en una inversió per al barri.",
+    "coste_usd": 0.0013966,
+    "segundos": 7.33,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S30",
+    "alertas": [
+      {
+        "tipo": "no_inversion",
+        "texto": "Posible no inversión",
+        "mensaje": "La poda de árboles se considera una tarea de mantenimiento ordinario.",
+        "norma": "El mantenimiento, conservación o limpieza de edificios, parques, vehículos o mobiliario no son inversión."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una tarea de mantenimiento y no una inversión.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Queremos informarle que la poda de árboles se considera una tarea de mantenimiento ordinario y, según las bases de los presupuestos participativos, las propuestas deben ser de inversión. Le animamos a presentar propuestas que impliquen la construcción, adquisición o mejora de infraestructuras o equipamientos.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Volem informar-li que la poda d'arbres es considera una tasca de manteniment ordinari i, segons les bases dels pressupostos participatius, les propostes han de ser d'inversió. L'animem a presentar propostes que impliquen la construcció, adquisició o millora d'infraestructures o equipaments.",
+    "coste_usd": 0.0013485,
+    "segundos": 8.01,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S31",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión municipal y no presenta alertas claras de inviabilidad.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.000734,
+    "segundos": 1.53,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S32",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.00074,
+    "segundos": 10.47,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S33",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.00074,
+    "segundos": 4.54,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S34",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y competencia municipal, y el presupuesto estimado está dentro del límite del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007444,
+    "segundos": 1.04,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S35",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Si el solar es municipal",
+      "Viabilidad técnica del emplazamiento"
+    ],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal, con un presupuesto estimado que no supera el del distrito. Se recomienda revisar la titularidad del solar y la viabilidad técnica.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008481,
+    "segundos": 5.59,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S36",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y de competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007309,
+    "segundos": 1.59,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S37",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007397,
+    "segundos": 9.16,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S38",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007266,
+    "segundos": 1.61,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S39",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007403,
+    "segundos": 5.16,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S40",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Revisar si el jardín es de titularidad municipal.",
+      "Revisar la viabilidad técnica de la ubicación propuesta."
+    ],
+    "resumen": "La propuesta parece ser una inversión y competencia municipal, y el presupuesto estimado es acorde al distrito. Se recomienda revisar la titularidad del solar y la viabilidad técnica.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008587,
+    "segundos": 2.64,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S41",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Estado-Costas)",
+        "mensaje": "La Devesa del Saler y las dunas forman parte del dominio público marítimo-terrestre, cuya competencia recae en Costas (Estado).",
+        "norma": "Playas y dominio público marítimo-terrestre (Costas, Estado).",
+        "administracion": "Estado-Costas"
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser competencia de la administración estatal (Costas) por su ubicación en el dominio público marítimo-terrestre.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Hemos detectado que la mejora de accesos en la Devesa del Saler, al afectar al dominio público marítimo-terrestre, podría no ser competencia municipal, sino de la administración estatal (Costas). Le animamos a presentar propuestas que se enmarquen en las competencias del Ayuntamiento de València.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Hem detectat que la millora d'accessos a la Devesa del Saler, en afectar el domini públic marítim-terrestre, podria no ser competència municipal, sinó de l'administració estatal (Costes). L'animem a presentar propostes que s'emmarquen en les competències de l'Ajuntament de València.",
+    "coste_usd": 0.0015008,
+    "segundos": 7.13,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S42",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Si el centro municipal de mayores de El Palmar es de titularidad municipal",
+      "Si la propuesta ya está prevista o en ejecución"
+    ],
+    "resumen": "La propuesta parece una inversión y está dentro del presupuesto del distrito, pero se debe revisar la titularidad del centro y si ya está prevista.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0008503,
+    "segundos": 18.78,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S43",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007412,
+    "segundos": 1.47,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S44",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007397,
+    "segundos": 1.54,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S45",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007418,
+    "segundos": 11.85,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S46",
+    "alertas": [],
+    "puntos_a_revisar": [
+      "Si el solar es municipal",
+      "Viabilidad técnica del emplazamiento"
+    ],
+    "resumen": "La propuesta parece ser una inversión y estar dentro de la competencia municipal y el presupuesto del distrito.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007966,
+    "segundos": 10.02,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S47",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión y competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007259,
+    "segundos": 1.35,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S48",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión y de competencia municipal, sin alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.00073,
+    "segundos": 1.57,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S49",
+    "alertas": [
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El coste estimado de la propuesta (15.000.000 €) es significativamente superior al presupuesto disponible para el distrito de Quatre Carreres (1.475.031 €).",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      }
+    ],
+    "puntos_a_revisar": [
+      "Verificar la titularidad municipal del solar propuesto para el parque.",
+      "Evaluar la viabilidad técnica y urbanística de construir un parque de estas dimensiones en la ubicación sugerida."
+    ],
+    "resumen": "La propuesta de un gran parque metropolitano en Quatre Carreres parece exceder considerablemente el presupuesto disponible para el distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Hemos detectado que el coste estimado de un gran parque metropolitano podría superar el presupuesto asignado a su distrito. Le animamos a reformular su propuesta con un alcance más ajustado al presupuesto disponible o a considerar proyectos de menor envergadura que puedan ser viables dentro de los límites económicos del distrito.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Hem detectat que el cost estimat d'un gran parc metropolità podria superar el pressupost assignat al seu districte. L'animem a reformular la seua proposta amb un abast més ajustat al pressupost disponible o a considerar projectes de menor envergadura que puguen ser viables dins dels límits econòmics del districte.",
+    "coste_usd": 0.0016218,
+    "segundos": 10.17,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "S50",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Estado-Costas)",
+        "mensaje": "La propuesta de un carril bici que conecte el Perellonet con el Saler podría implicar zonas de dominio público marítimo-terrestre.",
+        "norma": "Es motivo de desestimación que la ejecución requiera implicar a otras administraciones, como Costas o el Estado, en el dominio público marítimo-terrestre.",
+        "administracion": "Estado-Costas"
+      }
+    ],
+    "puntos_a_revisar": [
+      "Revisar si el trazado propuesto del carril bici afecta a zonas de dominio público marítimo-terrestre o a otras administraciones."
+    ],
+    "resumen": "La propuesta de un carril bici entre el Perellonet y el Saler parece que podría requerir la implicación de otras administraciones, como Costas.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por su propuesta. Hemos detectado que la creación de un carril bici entre el Perellonet y el Saler podría implicar zonas de dominio público marítimo-terrestre, cuya competencia recae en otras administraciones. Le animamos a reformular su propuesta para que se centre en actuaciones dentro del ámbito estrictamente municipal.",
+    "borrador_carta_va": "Benvolgut/da veí/na, gràcies per la seua proposta. Hem detectat que la creació d'un carril bici entre el Perellonet i el Saler podria implicar zones de domini públic marítim-terrestre, la competència de les quals recau en altres administracions. L'animem a reformular la seua proposta perquè se centre en actuacions dins de l'àmbit estrictament municipal.",
+    "coste_usd": 0.00163,
+    "segundos": 5.22,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "DEMO01",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser una inversión municipal y no presenta alertas iniciales.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007293,
+    "segundos": 1.57,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "DEMO02",
+    "alertas": [
+      {
+        "tipo": "fuera_competencia",
+        "texto": "Posible fuera de competencia (Estado-Costas)",
+        "mensaje": "La propuesta de ampliar la arena de la playa y construir un dique parece ser competencia de la administración estatal.",
+        "norma": "Las playas y el dominio público marítimo-terrestre son competencia de Costas (Estado).",
+        "administracion": "Estado-Costas"
+      },
+      {
+        "tipo": "fuera_presupuesto",
+        "texto": "Posible fuera de presupuesto",
+        "mensaje": "El presupuesto estimado por el vecino (2.000.000 €) supera el presupuesto disponible para el distrito de Poblats Marítims (1.205.469 €).",
+        "norma": "Se excluyen propuestas con coste superior a la cuantía asignada al distrito."
+      }
+    ],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece ser competencia de la administración estatal y el presupuesto estimado supera el disponible para el distrito.",
+    "borrador_carta_es": "Estimado/a vecino/a, gracias por tu propuesta. Te informamos que la ampliación de playas y la construcción de diques podría no ser competencia municipal, sino de la administración estatal (Costas). Además, el presupuesto estimado para esta intervención parece superar el límite asignado a tu distrito. Te animamos a presentar propuestas que se ajusten a las competencias municipales y al presupuesto disponible.",
+    "borrador_carta_va": "Estimat/da veí/na, gràcies per la teua proposta. T'informem que l'ampliació de platges i la construcció de dics podria no ser competència municipal, sinó de l'administració estatal (Costes). A més, el pressupost estimat per a aquesta intervenció sembla superar el límit assignat al teu districte. T'animem a presentar propostes que s'ajusten a les competències municipals i al pressupost disponible.",
+    "coste_usd": 0.00150517,
+    "segundos": 3.27,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
+  },
+  {
+    "id": "DEMO03",
+    "alertas": [],
+    "puntos_a_revisar": [],
+    "resumen": "La propuesta parece una inversión municipal y no presenta alertas claras.",
+    "borrador_carta_es": "",
+    "borrador_carta_va": "",
+    "coste_usd": 0.0007255,
+    "segundos": 1.4,
+    "modelo": "google/gemini-2.5-flash",
+    "modo": "llm"
   }
 ]

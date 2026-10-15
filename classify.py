@@ -1,197 +1,295 @@
-"""Garbell: pre-filtro de propuestas VLCParticipa (señala alertas, no decide).
+"""Garbell - pre-filtro de propuestas VLCParticipa (OpenRouter).
 
-- Con OPENROUTER_API_KEY en .env -> llama al LLM vía OpenRouter (API compatible con OpenAI).
-- Sin clave -> modo simulado con reglas sencillas, para poder desarrollar la app sin gastar.
+LA IA SEÑALA, EL TÉCNICO DECIDE. Este módulo NO aprueba ni rechaza nada:
+solo devuelve alertas para que el técnico revise más rápido.
+
+Alertas que genera este módulo:
+  FUERA_COMPETENCIA, FUERA_PRESUPUESTO, NO_INVERSION
+La alerta POSIBLE_DUPLICADO se calcula aparte, en local, comparando textos (parte de la app).
+
+Uso:
+    python classify.py            # prueba con 5 propuestas inventadas
+Desde la app:
+    from classify import classify
+    r = classify(titulo, descripcion, distrito, presupuesto_estimado)
 """
-from __future__ import annotations
-
+import hashlib
 import json
 import os
+import pathlib
 import re
 import time
-from pathlib import Path
-from typing import Literal
 
+import requests
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field, ValidationError
 
 load_dotenv()
 
-ROOT = Path(__file__).parent
-CRITERIOS = (ROOT / "criterios.md").read_text(encoding="utf-8")
+API_URL = "https://openrouter.ai/api/v1/chat/completions"
+MODEL = os.environ.get("OPENROUTER_MODEL", "google/gemini-2.5-flash")
+_KEY_FILE = pathlib.Path(__file__).with_name("clave.txt")
+API_KEY = os.environ.get("OPENROUTER_API_KEY") or (
+    _KEY_FILE.read_text(encoding="utf-8").strip() if _KEY_FILE.exists() else "")
+CRITERIOS = pathlib.Path(__file__).with_name("criterios.md").read_text(encoding="utf-8")
+CACHE_FILE = pathlib.Path(__file__).with_name("cache_clasificacion.json")
 
-API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
-MODEL = os.getenv("OPENROUTER_MODEL", "").strip()
-# Precio por millón de tokens (solo se usa si OpenRouter no devuelve el coste)
-PRICE_IN = float(os.getenv("PRICE_IN_PER_M", "0") or 0)
-PRICE_OUT = float(os.getenv("PRICE_OUT_PER_M", "0") or 0)
+# Presupuesto oficial por distrito VLCParticipa 2025-26 (vlcparticipa.valencia.es/help)
+PRESUPUESTO_DISTRITO = {
+    "ciutat vella": 395154, "eixample": 485894, "extramurs": 640588, "campanar": 623387,
+    "saidia": 921957, "pla del real": 380571, "olivereta": 1183678, "patraix": 1012058,
+    "jesus": 1157550, "quatre carreres": 1475031, "poblats maritims": 1205469,
+    "camins al grau": 1098609, "algiros": 586341, "benimaclet": 510618, "rascanya": 1256663,
+    "benicalap": 1103863, "pobles del nord": 373506, "pobles de l'oest": 692676,
+    "pobles del sud": 896387,
+}
 
+SYSTEM = f"""Eres "Garbell", un PRE-FILTRO de ayuda para el técnico del Servicio de Descentralización y Participación Ciudadana del Ayuntamiento de València (presupuestos participativos VLCParticipa).
 
-# ---------- Esquema de salida ----------
-class Alerta(BaseModel):
-    tipo: Literal["duplicado", "competencia", "presupuesto", "no_inversion"]
-    mensaje: str
-    norma: str = ""
-    administracion: str | None = None  # solo en alertas de competencia
-    confianza: float = Field(ge=0, le=1)
+NO DECIDES NADA. No apruebas, no rechazas, no descartas. Solo señalas POSIBLES alertas para que el técnico revise más rápido. El técnico revisa siempre todas las propuestas y toma todas las decisiones.
 
+Bases oficiales:
+{CRITERIOS}
 
-class Clasificacion(BaseModel):
-    alertas: list[Alerta] = []  # vacía = "Sin alertas · a priori viable"
-    resumen: str
-    borrador_carta_es: str = ""
-    borrador_carta_va: str = ""
+Solo puedes señalar estos 3 tipos de alerta:
+- FUERA_COMPETENCIA: parece competencia de otra administración (Costas/Estado, Generalitat, FGV, Adif, Autoridad Portuaria...) o requiere implicar a otras administraciones.
+- FUERA_PRESUPUESTO: idea claramente desproporcionada para el presupuesto del distrito (p. ej. una línea de metro, un polideportivo grande en un distrito pequeño).
+- NO_INVERSION: actividades, fiestas, talleres, cursos, contratar personal, servicios, subvenciones, alquileres, mantenimiento o limpieza ordinarios.
 
-
-def _limpiar(c: Clasificacion) -> dict:
-    datos = c.model_dump()
-    alertas = []
-    for a in datos["alertas"]:
-        if a["tipo"] == "duplicado":  # los duplicados los añade la app (duplicates.py)
-            continue
-        if a["tipo"] != "competencia" or not a["administracion"]:
-            a.pop("administracion")
-        alertas.append(a)
-    datos["alertas"] = alertas
-    return datos
-
-
-SCHEMA_TXT = """Devuelve SOLO un objeto JSON con esta forma exacta:
-{
+Reglas:
+- Usa SIEMPRE lenguaje de posibilidad: "posible", "parece". Nunca "rechazada", "aprobada", "inviable" ni "desestimada".
+- Señala una alerta solo si hay base clara en el texto; ante la duda, no la pongas y anótalo en "puntos_a_revisar".
+- Cada alerta cita la regla concreta de las bases en una frase.
+- "puntos_a_revisar": cosas que la IA no puede saber y el técnico debe comprobar (titularidad del solar, si ya está prevista, viabilidad técnica del sitio...). Máximo 2.
+- Si hay alertas, escribe un BORRADOR de carta al vecino en castellano y en valenciano: breve, amable, en condicional ("podría no ser competencia municipal..."), explicando el posible motivo y cómo reformularla. Si no hay alertas, deja las cartas vacías.
+- Responde SOLO con JSON válido, sin texto adicional, con este esquema exacto:
+{{
   "alertas": [
-    {"tipo": "competencia" | "presupuesto" | "no_inversion",
-     "mensaje": "...", "norma": "...",
-     "administracion": "solo en alertas de competencia",
-     "confianza": 0.0-1.0}
+    {{"tipo": "FUERA_COMPETENCIA|FUERA_PRESUPUESTO|NO_INVERSION",
+      "texto": "Posible ... (frase corta para la etiqueta)",
+      "motivo": "por qué, en una frase",
+      "regla": "regla de las bases que lo respalda",
+      "administracion": "solo si FUERA_COMPETENCIA: Estado-Costas|Generalitat|FGV|Adif|Autoridad Portuaria|Otra"}}
   ],
-  "resumen": "una frase para el técnico",
-  "borrador_carta_es": "borrador en castellano o vacío",
-  "borrador_carta_va": "borrador en valenciano o vacío"
+  "puntos_a_revisar": ["..."],
+  "resumen": "una frase para el técnico, en lenguaje de posibilidad",
+  "borrador_carta_es": "",
+  "borrador_carta_va": ""
+}}"""
+
+PROMPT_VERSION = hashlib.sha256(SYSTEM.encode()).hexdigest()[:8]
+
+
+def _norm(s):
+    s = (s or "").lower()
+    for a, b in (("à", "a"), ("á", "a"), ("è", "e"), ("é", "e"), ("í", "i"), ("ï", "i"),
+                 ("ò", "o"), ("ó", "o"), ("ú", "u"), ("ü", "u"), ("l'", ""), ("la ", ""), ("el ", "")):
+        s = s.replace(a, b)
+    return s.strip()
+
+
+def presupuesto_del_distrito(distrito):
+    d = _norm(distrito)
+    for k, v in PRESUPUESTO_DISTRITO.items():
+        if _norm(k) in d or d in _norm(k):
+            return v
+    return None
+
+
+def _numero(x):
+    digits = re.sub(r"[^\d]", "", str(x or ""))
+    return int(digits) if digits else None
+
+
+def _load_cache():
+    if CACHE_FILE.exists():
+        return json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+    return {}
+
+
+def _save_cache(cache):
+    CACHE_FILE.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _parse_json(text):
+    return json.loads(text[text.find("{"): text.rfind("}") + 1])
+
+
+def _alerta_presupuesto_regla(distrito, presupuesto_estimado, alertas):
+    """Regla determinista: si el vecino estima más que la partida del distrito."""
+    tope, est = presupuesto_del_distrito(distrito), _numero(presupuesto_estimado)
+    if tope and est and est > tope and not any(a.get("tipo") == "FUERA_PRESUPUESTO" for a in alertas):
+        alertas.append({
+            "tipo": "FUERA_PRESUPUESTO",
+            "texto": "Posible fuera de presupuesto",
+            "motivo": f"El coste estimado ({est:,} €) supera la partida del distrito ({tope:,} €).".replace(",", "."),
+            "regla": "Bases: se excluyen las propuestas con coste superior a la cuantía asignada al distrito.",
+            "administracion": "",
+        })
+
+
+ETIQUETAS = {
+    "FUERA_COMPETENCIA": "Posible fuera de competencia",
+    "FUERA_PRESUPUESTO": "Posible fuera de presupuesto",
+    "NO_INVERSION": "Posible no inversión",
 }
-Si no hay indicios claros de ningún problema, "alertas" es una lista vacía []."""
 
 
-def _prompt_usuario(p: dict) -> str:
-    return (
-        f"Propuesta nº {p.get('id')}\n"
-        f"Título: {p.get('titulo')}\n"
-        f"Descripción: {p.get('descripcion')}\n"
-        f"Distrito: {p.get('distrito')} | Barrio: {p.get('barrio')}\n"
-        f"Presupuesto estimado: {p.get('presupuesto_estimado')} €\n\n{SCHEMA_TXT}"
-    )
+def _etiquetar(result):
+    """Etiquetas fijas (no las escribe la IA) para que el panel sea consistente."""
+    alertas = result.get("alertas", [])
+    for a in alertas:
+        a["texto"] = ETIQUETAS.get(a.get("tipo"), a.get("texto", ""))
+        if a.get("tipo") == "FUERA_COMPETENCIA" and a.get("administracion"):
+            a["texto"] += f" ({a['administracion']})"
+    result["estado"] = "con_alertas" if alertas else "sin_alertas"
+    result["etiqueta"] = " · ".join(a["texto"] for a in alertas) if alertas else "Sin alertas, a priori viable"
+    return result
 
 
-def _extraer_json(texto: str) -> dict:
-    texto = texto.strip()
-    texto = re.sub(r"^```(?:json)?|```$", "", texto, flags=re.M).strip()
-    i, j = texto.find("{"), texto.rfind("}")
-    return json.loads(texto[i : j + 1])
+def classify(titulo, descripcion, distrito="", presupuesto_estimado="", use_cache=True):
+    """Devuelve alertas (nunca una decisión). Campos clave:
+    estado: "con_alertas" | "sin_alertas"   ->  etiqueta: "Alerta: posible..." | "Sin alertas, a priori viable"
+    alertas: lista de {tipo, texto, motivo, regla, administracion}
+    puntos_a_revisar, resumen, borrador_carta_es, borrador_carta_va, _coste_usd
+    """
+    ciudad = _norm(distrito) == "ciudad"
+    tope = presupuesto_del_distrito(distrito)
+    linea_tope = ("Edición de ámbito ciudad: sin partida por distrito; no señales fuera_presupuesto "
+                  "salvo si es desproporcionado (más de 5 M€)") if ciudad else \
+        f"Presupuesto disponible del distrito: {tope if tope else 'desconocido'} €"
+    user = (f"Título: {titulo}\nDescripción: {descripcion}\nDistrito: {distrito}\n{linea_tope}\n"
+            f"Presupuesto estimado por el vecino: {presupuesto_estimado or 'no indicado'}")
+    key = hashlib.sha256(f"{MODEL}|{PROMPT_VERSION}|{user}".encode()).hexdigest()
+    cache = _load_cache() if use_cache else {}
+    if use_cache and key in cache:
+        return _etiquetar({**cache[key], "_cache": True})
 
-
-# ---------- Modo LLM ----------
-def _classify_llm(p: dict) -> dict:
-    from openai import OpenAI
-
-    if not MODEL:
-        raise RuntimeError("Falta OPENROUTER_MODEL en .env")
-    client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=API_KEY)
-    mensajes = [
-        {"role": "system", "content": CRITERIOS},
-        {"role": "user", "content": _prompt_usuario(p)},
-    ]
-    ultimo_error = None
-    for intento in range(2):  # 1 reintento si el JSON no es válido
-        t0 = time.time()
-        resp = client.chat.completions.create(
-            model=MODEL,
-            messages=mensajes,
-            temperature=0,
-            response_format={"type": "json_object"},
-            extra_body={"usage": {"include": True}},
-        )
-        texto = resp.choices[0].message.content or ""
+    t0 = time.time()
+    last_err = None
+    for _ in range(2):  # un reintento si el JSON sale mal
         try:
-            datos = _limpiar(Clasificacion(**_extraer_json(texto)))
-        except (ValueError, ValidationError) as e:
-            ultimo_error = e
-            mensajes.append({"role": "assistant", "content": texto})
-            mensajes.append({"role": "user", "content": "JSON inválido. Repite SOLO el JSON correcto."})
-            continue
-        u = resp.usage
-        tin, tout = (u.prompt_tokens, u.completion_tokens) if u else (0, 0)
-        coste = getattr(u, "cost", None) if u else None
-        if coste is None:
-            coste = tin / 1e6 * PRICE_IN + tout / 1e6 * PRICE_OUT
-        datos.update(
-            tokens_in=tin, tokens_out=tout, coste_usd=round(float(coste), 6),
-            segundos=round(time.time() - t0, 2), modelo=MODEL, modo="llm",
-        )
-        return datos
-    raise RuntimeError(f"El modelo no devolvió JSON válido: {ultimo_error}")
+            resp = requests.post(
+                API_URL,
+                headers={"Authorization": f"Bearer {API_KEY}"},
+                json={
+                    "model": MODEL,
+                    "temperature": 0,
+                    "response_format": {"type": "json_object"},
+                    "usage": {"include": True},
+                    "messages": [{"role": "system", "content": SYSTEM},
+                                 {"role": "user", "content": user}],
+                },
+                timeout=60,
+            )
+            resp.raise_for_status()
+            data = resp.json()
+            result = _parse_json(data["choices"][0]["message"]["content"])
+            alertas = [a for a in result.get("alertas", [])
+                       if a.get("tipo") in ("FUERA_COMPETENCIA", "FUERA_PRESUPUESTO", "NO_INVERSION")]
+            if not ciudad:
+                _alerta_presupuesto_regla(distrito, presupuesto_estimado, alertas)
+            result["alertas"] = alertas
+            result = _etiquetar(result)
+            if not alertas:
+                result["borrador_carta_es"] = result["borrador_carta_va"] = ""
+            result["decision_tecnico"] = "pendiente"  # la decide SIEMPRE el técnico
+            usage = data.get("usage", {})
+            result["_coste_usd"] = usage.get("cost")
+            result["_segundos"] = round(time.time() - t0, 2)
+            result["_modelo"] = MODEL
+            if use_cache:
+                cache[key] = result
+                _save_cache(cache)
+            return result
+        except Exception as e:  # noqa: BLE001
+            last_err = e
+    return {"estado": "error", "alertas": [], "etiqueta": "Sin analizar: revisión manual",
+            "resumen": f"Error del pre-filtro: {last_err}", "decision_tecnico": "pendiente", "_error": True}
 
 
-# ---------- Modo simulado (sin clave) ----------
+# ---------- Adaptador para la app (contrato JSON de CLAUDE.md) ----------
+# Modo simulado sin clave: reglas sencillas para desarrollar la app sin gastar.
 AJENAS = {
-    r"playa|arena|chiringuito|duchas? en la playa": ("Estado (Demarcación de Costas)", "Ley 22/1988 de Costas"),
-    r"colegio|instituto|\bIES\b|\bCEIP\b|aula": ("Generalitat (Conselleria de Educación)", "Competencia autonómica en educación"),
-    r"centro de salud|hospital|ambulatorio": ("Generalitat (Conselleria de Sanidad)", "Competencia autonómica en sanidad"),
-    r"metro|tranv[ií]a|\bFGV\b": ("Generalitat (FGV)", "Ley 4/2004 de FGV"),
-    r"renfe|adif|v[ií]as? del tren|cercan[ií]as": ("Estado (Adif/Renfe)", "Ley 38/2015 del Sector Ferroviario"),
+    r"playa|arena|chiringuito|duchas? en la playa": "Estado-Costas",
+    r"colegio|instituto|\bIES\b|\bCEIP\b|aula": "Generalitat",
+    r"centro de salud|hospital|ambulatorio": "Generalitat",
+    r"metro|tranv[ií]a|\bFGV\b": "FGV",
+    r"renfe|adif|v[ií]as? del tren|cercan[ií]as": "Adif",
+    r"puerto|portuari": "Autoridad Portuaria",
 }
-NO_INVERSION = r"fiesta|concierto|festival|taller|curso|campa[ñn]a|contratar|monitor|limpieza|vigilancia|pintar|podar|reparar|mantenimiento|subvenci"
+NO_INVERSION = r"fiesta|concierto|festival|taller|curso|clases|campa[ñn]a|contratar|monitor|limpieza|vigilancia|patrulla|pintar|repintar|podar|poda\b|reparar|arreglar|mantenimiento|subvenci"
 
 
-def _classify_mock(p: dict) -> dict:
-    texto = f"{p.get('titulo', '')} {p.get('descripcion', '')}".lower()
+def _classify_mock(p):
+    texto = f"{p.get('titulo', '')} {p.get('descripcion', '')}"
     alertas = []
-    for patron, (admin, norma) in AJENAS.items():
+    for patron, admin in AJENAS.items():
         if re.search(patron, texto, re.I):
-            alertas.append({"tipo": "competencia", "mensaje": f"Parece competencia de {admin}.",
-                            "norma": norma, "administracion": admin, "confianza": 0.85})
+            alertas.append({"tipo": "FUERA_COMPETENCIA", "motivo": f"Parece competencia de {admin}.",
+                            "regla": "Bases: fuera de competencia municipal.", "administracion": admin})
             break
-    if re.search(NO_INVERSION, texto):
-        alertas.append({"tipo": "no_inversion", "mensaje": "Parece gasto corriente o actividad, no una inversión.",
-                        "norma": "Bases VLCParticipa – proyectos de inversión", "confianza": 0.8})
-    try:
-        euros = float(p.get("presupuesto_estimado") or 0)
-    except ValueError:
-        euros = 0
-    if euros > 160000:  # [VERIFICAR C] umbral provisional; sin presupuesto no es alerta
-        alertas.append({"tipo": "presupuesto", "mensaje": f"{euros:,.0f} € supera el umbral orientativo de 160.000 €.",
-                        "norma": "Bases – asignación por distrito", "confianza": 0.7})
+    if re.search(NO_INVERSION, texto, re.I):
+        alertas.append({"tipo": "NO_INVERSION", "motivo": "Parece una actividad, servicio o mantenimiento, no una inversión.",
+                        "regla": "Bases: solo proyectos de inversión.", "administracion": ""})
+    if _norm(p.get("distrito")) == "ciudad":
+        est = _numero(p.get("presupuesto_estimado"))
+        if est and est > 5_000_000:
+            alertas.append({"tipo": "FUERA_PRESUPUESTO", "motivo": "Coste desproporcionado (más de 5 M€).",
+                            "regla": "Bases: presupuesto.", "administracion": ""})
+    else:
+        _alerta_presupuesto_regla(p.get("distrito"), p.get("presupuesto_estimado"), alertas)
+    r = _etiquetar({"alertas": alertas, "puntos_a_revisar": [], "resumen": "Pre-filtro simulado (sin LLM).",
+                    "borrador_carta_es": "", "borrador_carta_va": ""})
+    if alertas:
+        a = alertas[0]
+        r["borrador_carta_es"] = (f"Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta "
+                                  f"«{p.get('titulo')}». Tras una primera revisión, podría no cumplir las bases: "
+                                  f"{a['motivo']} ({a['regla']}) Un técnico la revisará.\n\n"
+                                  "Servicio de Descentralización y Participación Ciudadana")
+        r["borrador_carta_va"] = (f"Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta "
+                                  f"«{p.get('titulo')}». Després d'una primera revisió, podria no complir les bases "
+                                  f"({a['regla']}). Un tècnic la revisarà.\n\n"
+                                  "Servici de Descentralització i Participació Ciutadana")
+    return r
 
-    carta_es = carta_va = ""
-    motivo = next((a for a in alertas if a["tipo"] in ("competencia", "no_inversion")), None)
-    if motivo:
-        admin = motivo.get("administracion")
-        razon_es = f"es competencia de {admin}" if admin else "no es un proyecto de inversión"
-        razon_va = f"és competència de {admin}" if admin else "no és un projecte d'inversió"
-        carta_es = (f"Estimado/a vecino/a:\n\nGracias por participar en VLCParticipa con la propuesta «{p.get('titulo')}». "
-                    f"Tras su revisión técnica, no puede pasar a votación porque {razon_es} ({motivo['norma']}). "
-                    "Le animamos a seguir participando.\n\nServicio de Descentralización y Participación Ciudadana")
-        carta_va = (f"Benvolgut/da veí/veïna:\n\nGràcies per participar en VLCParticipa amb la proposta «{p.get('titulo')}». "
-                    f"Després de la revisió tècnica, no pot passar a votació perquè {razon_va} ({motivo['norma']}). "
-                    "Vos animem a continuar participant.\n\nServici de Descentralització i Participació Ciutadana")
+
+def classify_dict(p: dict) -> dict:
+    """Para la app: recibe una fila del CSV y devuelve el contrato JSON con tipos en minúsculas
+    (fuera_competencia, fuera_presupuesto, no_inversion). Sin clave usa el modo simulado."""
+    r = classify(p.get("titulo", ""), p.get("descripcion", ""), p.get("distrito", ""),
+                 p.get("presupuesto_estimado", "")) if API_KEY else _classify_mock(p)
+    if r.get("_error"):
+        raise RuntimeError(r.get("resumen"))
+    alertas = []
+    for a in r.get("alertas", []):
+        al = {"tipo": a["tipo"].lower(), "texto": a.get("texto", ""), "mensaje": a.get("motivo", ""),
+              "norma": a.get("regla", "")}
+        if a["tipo"] == "FUERA_COMPETENCIA" and a.get("administracion"):
+            al["administracion"] = a["administracion"]
+        alertas.append(al)
     return {
-        "alertas": alertas,
-        "resumen": "Pre-filtro simulado (sin LLM).",
-        "borrador_carta_es": carta_es,
-        "borrador_carta_va": carta_va,
-        "tokens_in": 0, "tokens_out": 0, "coste_usd": 0.0, "segundos": 0.0,
-        "modelo": "simulado", "modo": "mock",
+        "id": p.get("id"), "alertas": alertas, "puntos_a_revisar": r.get("puntos_a_revisar", []),
+        "resumen": r.get("resumen", ""), "borrador_carta_es": r.get("borrador_carta_es", ""),
+        "borrador_carta_va": r.get("borrador_carta_va", ""),
+        "coste_usd": r.get("_coste_usd") or 0.0, "segundos": r.get("_segundos", 0.0),
+        "modelo": r.get("_modelo", MODEL) if API_KEY else "simulado",
+        "modo": ("cache" if r.get("_cache") else "llm") if API_KEY else "mock",
     }
 
 
-def classify(propuesta: dict) -> dict:
-    """Clasifica una propuesta. Usa el LLM si hay clave; si no, el modo simulado."""
-    out = _classify_llm(propuesta) if API_KEY else _classify_mock(propuesta)
-    out["id"] = propuesta.get("id")
-    return out
-
-
 if __name__ == "__main__":
-    ejemplo = {"id": 1, "titulo": "Lavabos en la playa de la Malvarrosa",
-               "descripcion": "Instalar lavabos públicos en la arena", "distrito": "Poblats Marítims",
-               "barrio": "Malvarrosa", "presupuesto_estimado": 40000}
-    print("Modo:", "LLM" if API_KEY else "simulado")
-    print(json.dumps(classify(ejemplo), ensure_ascii=False, indent=2))
+    pruebas = [
+        ("Lavabos en la playa de la Malva-rosa", "Instalar baños públicos en la arena de la playa.", "Poblats Marítims", "30000", {"FUERA_COMPETENCIA"}),
+        ("Bancos y sombra en la plaza", "Poner 6 bancos y un toldo fijo en la plaza del barrio.", "Benimaclet", "15000", set()),
+        ("Fiesta de barrio anual", "Organizar una fiesta con música cada verano.", "Patraix", "5000", {"NO_INVERSION"}),
+        ("Ampliar la línea de metro", "Que el metro llegue hasta nuestro barrio.", "Benicalap", "2000000", {"FUERA_COMPETENCIA", "FUERA_PRESUPUESTO"}),
+        ("Más limpieza en las calles", "Contratar más personal de limpieza.", "Ciutat Vella", "", {"NO_INVERSION"}),
+    ]
+    ok_total = 0
+    for t, d, dist, pres, esperadas in pruebas:
+        r = classify(t, d, dist, pres)
+        tipos = {a["tipo"] for a in r.get("alertas", [])}
+        ok = (tipos & esperadas) if esperadas else not tipos
+        ok_total += bool(ok)
+        print(f"{'OK ' if ok else 'MAL'} | {t:<35} | {r.get('etiqueta')} | coste: {r.get('_coste_usd')} $")
+    print(f"\nRESULTADO: {ok_total}/5 alertas como se esperaba. Modelo: {MODEL}")

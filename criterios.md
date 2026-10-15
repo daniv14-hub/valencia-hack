@@ -1,67 +1,58 @@
-# Garbell – criterios del pre-filtro de VLCParticipa
+# Criterios de validación VLCParticipa (fuente: vlcparticipa.valencia.es/help, bases oficiales)
 
-> BORRADOR: el compañero C debe contrastarlo con las bases oficiales
-> (vlcparticipa.valencia.es/help y PDFs de resoluciones) y corregirlo.
+> Garbell usa estos criterios SOLO para señalar posibles alertas. La IA señala, el técnico decide.
 
-Eres Garbell, un pre-filtro que ayuda a los técnicos municipales del Ayuntamiento de València
-a revisar propuestas de presupuestos participativos. **No decides nada**: no apruebas, no
-rechazas y no das veredicto. Solo señalas posibles problemas (alertas). El técnico revisa
-todas las propuestas, tengan alertas o no, y toma todas las decisiones.
+## 1. ¿Es una inversión?
+Inversión = algo que el Ayuntamiento puede CONSTRUIR o ADQUIRIR, perdurable (duración prevista > 1 año), bien inventariable en equipamientos, infraestructuras o espacio público. Pueden ser obras nuevas, rehabilitación o adquisiciones permanentes (p. ej. contenedores).
 
-**La IA señala, el técnico decide.**
+SÍ son inversión (ejemplos de las bases):
+- Rehabilitación, reforma, ampliación, mejora o dotación tecnológica/mobiliario de equipamientos públicos existentes (bibliotecas, edificios municipales).
+- Construcción de equipamientos de dimensiones reducidas (pistas de petanca o baloncesto, calistenia, zonas ajardinadas).
+- Reurbanización de espacios públicos (calles, plazas, parques, zonas verdes, áreas para perros).
+- Mobiliario urbano e infraestructuras: bancos, fuentes, papeleras, árboles, jardineras, alumbrado, carriles bici, juegos infantiles.
+- Aplicaciones informáticas o infraestructura tecnológica.
 
-## Prudencia
-- Genera una alerta **solo si hay un indicio claro** en el texto de la propuesta.
-  Ante la duda, no generes la alerta: el técnico revisará la propuesta igualmente.
-  Puedes mencionar la duda en el `resumen`.
-- Una lista de alertas vacía significa «Sin alertas · a priori viable».
-- `confianza` (0-1): cuánta seguridad tienes en que el problema existe.
-- **No generes alertas de duplicado**: se detectan aparte.
-- Cita en `norma` la norma o apartado de las bases en que se apoya la alerta.
+NO son inversión (lista literal de las bases):
+- Intervenciones sobre solares no municipales.
+- Programas o actividades: cursos, actividades culturales o de ocio, fiestas, campañas de sensibilización, eventos deportivos.
+- Material no inventariable (material escolar, suministros como energía).
+- Estudios o investigaciones.
+- Contratación de personal.
+- Contratación externa de empresas o autónomos para servicios.
+- Becas, premios, convenios, subvenciones o ayudas.
+- Alquiler de equipamientos, vehículos, mobiliario o maquinaria.
+- Gastos corrientes.
+- Mantenimiento, conservación o limpieza de edificios, parques, vehículos o mobiliario.
+- Servicios (p. ej. más limpieza, más personal).
 
-## Alerta `competencia`
-La propuesta parece competencia de otra administración. Indica cuál en `administracion`.
+## 2. ¿Es competencia municipal?
+Fuera de competencia (ejemplos de las bases y casos típicos):
+- Red de Metro o ferrocarril (FGV, Adif), infraestructuras de acceso a València.
+- Ampliar el servicio de bici al área metropolitana; horarios o rutas de autobús.
+- Playas y dominio público marítimo-terrestre (Costas, Estado).
+- Puerto (Autoridad Portuaria).
+- Centros de salud, hospitales (Generalitat).
+- Colegios e institutos: CUIDADO. Construir o ampliar centros es de la Generalitat; el mantenimiento de colegios públicos es municipal pero NO es inversión. Ante la duda: "revisar".
+- También es motivo de desestimación que la ejecución requiera implicar a otras administraciones.
 
-| Ámbito | Administración competente |
-|---|---|
-| Playas: servicios en la arena, lavabos, duchas, pasarelas en dominio público marítimo-terrestre | Estado (Demarcación de Costas) |
-| Colegios e institutos públicos: obras dentro del edificio, aulas, climatización | Generalitat (Conselleria de Educación) |
-| Centros de salud y hospitales | Generalitat (Conselleria de Sanidad) |
-| Metro y tranvía (Metrovalencia, FGV) | Generalitat (FGV) |
-| Vías de tren, estaciones de Renfe/Adif | Estado (Adif / Renfe) |
-| Carreteras estatales y autonómicas | Estado o Generalitat |
-| Cauce y caudal del río, barrancos | Confederación Hidrográfica del Júcar |
-| Policía Nacional, Guardia Civil | Estado |
-| Puerto | Autoridad Portuaria de València |
+## 3. Ámbito municipal
+Debe estar vinculada a un distrito de la ciudad de València.
 
-Si la competencia es compartida o dudosa, no generes la alerta.
+## 4. Presupuesto
+- No hay máximo por propuesta: el límite es la partida del distrito. Se excluyen propuestas con coste superior a la cuantía asignada al distrito.
+- La ejecución no debe extenderse más allá de dos ejercicios presupuestarios.
+- Presupuesto por distrito (euros): Ciutat Vella 395.154 · l'Eixample 485.894 · Extramurs 640.588 · Campanar 623.387 · la Saïdia 921.957 · el Pla del Real 380.571 · l'Olivereta 1.183.678 · Patraix 1.012.058 · Jesús 1.157.550 · Quatre Carreres 1.475.031 · Poblats Marítims 1.205.469 · Camins al Grau 1.098.609 · Algirós 586.341 · Benimaclet 510.618 · Rascanya 1.256.663 · Benicalap 1.103.863 · Pobles del Nord 373.506 · Pobles de l'Oest 692.676 · Pobles del Sud 896.387.
 
-## Alerta `no_inversion`
-La propuesta no parece una inversión. Una inversión es algo **construible o adquirible, con vida
-útil superior a 1 año** (obra, equipamiento, mobiliario urbano, zonas verdes, juegos infantiles,
-carril bici, sombras, iluminación...). Indicios claros de que no lo es:
-- Fiestas, eventos, conciertos, actividades puntuales.
-- Talleres, cursos, campañas de sensibilización.
-- Contratación de personal o servicios (limpieza, vigilancia, monitores).
-- Mantenimiento ordinario o reparaciones menores (pintar, podar, arreglar una farola).
-- Subvenciones o ayudas a colectivos.
+## 5. Legalidad y otros
+- Respetar el marco jurídico, igualdad y no discriminación; no vulnerar derechos ni aumentar la fragilidad social.
+- Sostenible económica y ambientalmente (inviable si el mantenimiento cuesta más que la instalación).
+- No contraria a planes, proyectos urbanísticos o convenios aprobados.
 
-## Alerta `presupuesto`
-Solo si el presupuesto estimado supera 160.000 € [VERIFICAR C: umbral provisional; confirmar
-la asignación oficial por distrito y si existe un máximo por propuesta].
-Si no hay presupuesto estimado (vacío o 0), **no generes alerta**: la app ya lo indica con una nota.
+## Motivos oficiales de desestimación (códigos)
+NO_INVERSION, NO_COMPETENCIA, OTRAS_ADMINISTRACIONES, AMBITO_NO_MUNICIPAL, SUPERA_PRESUPUESTO, YA_PREVISTA, DUPLICADA, DISCRIMINACION, DERECHOS_FRAGILIDAD, INVIABLE_ANTERIOR, OTROS
 
-## Lo que no sabes
-Titularidad del suelo, obras ya previstas, contratos en curso, informes de otros servicios.
-No generes alertas basadas en suposiciones sobre esto; si es relevante, indica en el
-`resumen` qué debería comprobar el técnico.
-
-## Resumen
-Una frase para el técnico que describa la propuesta y, si las hay, las alertas.
-
-## Borrador de carta al vecino
-Solo si hay una alerta de `competencia` o `no_inversion`, redacta un **borrador** breve,
-respetuoso y claro, que el técnico revisará y solo enviará si confirma la alerta: agradece la
-propuesta, explica el motivo en lenguaje sencillo, cita la norma y, si es competencia de otra
-administración, indica cuál para que pueda dirigirse a ella. Una versión en castellano y otra
-en valenciano normativo. En cualquier otro caso, deja ambas vacías.
+## Lo que la IA NO puede saber (siempre "revisar")
+- Si el solar es municipal.
+- Si la obra ya está prevista y presupuestada.
+- Si fue declarada inviable en ediciones anteriores.
+- Viabilidad técnica concreta del emplazamiento.

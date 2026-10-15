@@ -1,3 +1,6 @@
 .env
 __pycache__/
 .venv/
+clave.txt
+motor_C/clasificacion.json
+cache_clasificacion.json

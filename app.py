@@ -8,7 +8,8 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-from classify import API_KEY, MODEL, classify
+from batch import metricas
+from classify import API_KEY, MODEL, classify_dict
 from duplicates import agrupar, buscar_parecidas
 
 ROOT = Path(__file__).parent
@@ -27,9 +28,9 @@ st.markdown("""
   .nota {color:#5b6b7b; font-size:0.85rem;}
 </style>""", unsafe_allow_html=True)
 
-ICONO = {"duplicado": "🔁", "competencia": "🏛️", "presupuesto": "💶", "no_inversion": "🎉"}
-NOMBRE = {"duplicado": "Duplicado", "competencia": "Competencia", "presupuesto": "Presupuesto",
-          "no_inversion": "No inversión"}
+ICONO = {"duplicado": "🔁", "fuera_competencia": "🏛️", "fuera_presupuesto": "💶", "no_inversion": "🎉"}
+NOMBRE = {"duplicado": "Duplicado", "fuera_competencia": "Fuera de competencia",
+          "fuera_presupuesto": "Fuera de presupuesto", "no_inversion": "No inversión"}
 SIN_ALERTAS = "Sin alertas · a priori viable"
 
 
@@ -37,11 +38,12 @@ SIN_ALERTAS = "Sin alertas · a priori viable"
 @st.cache_data
 def cargar():
     df = pd.read_csv(CSV, dtype=str).fillna("")
+    df = df[df.demo != "si"].reset_index(drop=True)  # las filas demo se teclean en vivo en la vista del vecino
     cls = {str(c["id"]): c for c in json.loads(JSON.read_text(encoding="utf-8"))} if JSON.exists() else {}
     # Si falta alguna clasificación, se completa en modo simulado para que el panel nunca se rompa
     for r in df.to_dict("records"):
         if str(r["id"]) not in cls:
-            c = classify(r) if not API_KEY else None
+            c = classify_dict(r) if not API_KEY else None
             if c:
                 cls[str(r["id"])] = c
     return df, cls
@@ -91,23 +93,26 @@ con = df["tipos"].map(bool)
 grupos = df["grupo_duplicado"].dropna().nunique()
 costes = [c.get("coste_usd", 0) for c in cls.values()]
 coste_medio = sum(costes) / len(costes) if costes else 0
-reales = df[df.decision_real.isin(["viable", "rechazada"])]
-rech, via = reales[reales.decision_real == "rechazada"], reales[reales.decision_real == "viable"]
-c_rech, c_via = int(rech.tipos.map(bool).sum()), int((~via.tipos.map(bool)).sum())
-k = st.columns(6)
+m = metricas(df)
+k = st.columns(5)
 k[0].metric("Propuestas", n)
 k[1].metric("Sin alertas", int((~con).sum()))
 k[2].metric("Con alertas", int(con.sum()))
 k[3].metric("Grupos de duplicados", grupos)
-k[4].metric("Coincidencia con técnicos", f"{c_rech + c_via}/{len(reales)}" if len(reales) else "—")
-k[4].markdown(f"<span class='nota'>Con alerta y descartadas por el técnico: {c_rech}/{len(rech)}<br>"
-              f"Sin alertas y admitidas por el técnico: {c_via}/{len(via)}</span>", unsafe_allow_html=True)
-k[5].metric("Tiempo de cribado estimado ahorrado", f"{n * MIN_POR_PROPUESTA / 60 * 0.6:.0f} h")
-k[5].markdown(f"<span class='nota'>Estimación: {MIN_POR_PROPUESTA} min por propuesta, "
+k[4].metric("Tiempo de cribado estimado ahorrado", f"{n * MIN_POR_PROPUESTA / 60 * 0.6:.0f} h")
+k[4].markdown(f"<span class='nota'>Estimación: {MIN_POR_PROPUESTA} min por propuesta, "
               "60 % del cribado asistido</span>", unsafe_allow_html=True)
 k2 = st.columns(4)
 for col, (t, nombre) in zip(k2, NOMBRE.items()):
     col.metric(f"{ICONO[t]} {nombre}", int(df.tipos.map(lambda s: t in s).sum()))
+k3 = st.columns(2)
+k3[0].markdown(f"**Sin falsas alarmas en {m['sin_falsas']} de {m['aprobadas']} aprobadas por los técnicos** "
+               "(propuestas reales)")
+if len(m["falsas"]):
+    k3[0].markdown("<span class='nota'>Falsas alarmas:<br>" + "<br>".join(
+        f"#{r.id} {r.titulo} → {', '.join(NOMBRE[t] for t in sorted(r.tipos))}" for r in m["falsas"].itertuples())
+        + "</span>", unsafe_allow_html=True)
+k3[1].markdown(f"**Alertas que coinciden con lo esperado: {m['sint_ok']}/{m['sint_total']}** (propuestas sintéticas)")
 st.markdown(f"<span class='nota'>Coste IA medio: {coste_medio:.4f} $/propuesta · "
             f"modelo: {MODEL if API_KEY else 'simulado (sin clave)'}</span>", unsafe_allow_html=True)
 
@@ -150,10 +155,14 @@ with tab_bandeja:
                         f"{p.distrito} · {p.barrio} · {float(p.presupuesto_estimado or 0):,.0f} € · "
                         f"Decisión del técnico: <b>{p.decision}</b>", unsafe_allow_html=True)
             st.write(p.descripcion)
+            if p.origen == "real":
+                st.caption(f"Propuesta real · edición {p.edicion} · {p.votos} votos")
             if not float(p.presupuesto_estimado or 0):
                 st.caption("ℹ️ Sin presupuesto estimado")
             if c.get("resumen"):
                 st.info(f"**Resumen IA:** {c['resumen']}")
+            if c.get("puntos_a_revisar"):
+                st.markdown("**Puntos a revisar por el técnico**\n" + "".join(f"\n- {x}" for x in c["puntos_a_revisar"]))
         with der:
             st.markdown("**Alertas del pre-filtro**")
             if not p.alertas:
@@ -214,10 +223,11 @@ with tab_nueva:
                 st.markdown(f"- #{r.id} **{r.titulo}** ({r.similitud:.0%} parecida)")
         nueva = {"id": str(1000 + len(st.session_state.extra) + 1), "titulo": titulo, "descripcion": desc,
                  "distrito": distrito, "barrio": barrio, "presupuesto_estimado": str(pres),
-                 "origen": "demo", "decision_real": "", "motivo_real": ""}
+                 "origen": "demo", "decision_real": "", "motivo_real": "",
+                 "edicion": "", "votos": "", "demo": "no", "alerta_esperada": ""}
         with st.spinner("Analizando con IA…"):
             try:
-                res = classify(nueva)
+                res = classify_dict(nueva)
             except Exception as e:
                 st.error(f"No se pudo clasificar en vivo: {e}")
                 res = None

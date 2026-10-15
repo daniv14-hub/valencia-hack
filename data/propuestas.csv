@@ -1,19 +1,85 @@
-id,titulo,descripcion,distrito,barrio,presupuesto_estimado,origen,decision_real,motivo_real
-1,Sombras en el parque infantil de la plaza Honduras,Instalar toldos o pérgolas de sombra sobre los juegos infantiles porque en verano no se puede usar,Camins al Grau,Albors,35000,sintetica,,
-2,Toldos para los juegos de niños de plaza Honduras,Poner sombra en la zona de juegos de la plaza Honduras que en verano está al sol todo el día,Camins al Grau,Albors,30000,sintetica,,
-3,Pérgola en el parque de plaza Honduras,Una estructura de sombra en el parque infantil de plaza Honduras,Camins al Grau,Albors,28000,sintetica,,
-4,Lavabos en la playa de la Malvarrosa,Instalar lavabos públicos en la arena de la playa para los bañistas,Poblats Marítims,Malvarrosa,40000,sintetica,,
-5,Duchas nuevas en la playa del Cabanyal,Más duchas y lavapiés en la playa porque las que hay no son suficientes,Poblats Marítims,Cabanyal-Canyamelar,25000,sintetica,,
-6,Fiesta de barrio anual en Benimaclet,Organizar una fiesta con conciertos y actividades para los vecinos cada año,Benimaclet,Benimaclet,15000,sintetica,,
-7,Talleres de informática para mayores,Cursos de informática para personas mayores en el centro social,Rascanya,Torrefiel,8000,sintetica,,
-8,Carril bici en la avenida Primado Reig,Conectar el carril bici de Primado Reig con el de Blasco Ibáñez de forma segura,Benimaclet,Benimaclet,120000,sintetica,,
-9,Climatizar las aulas del CEIP del barrio,Instalar aire acondicionado en las aulas del colegio público porque los niños pasan mucho calor,Patraix,Patraix,90000,sintetica,,
-10,Bancos y fuente en el jardín de Patraix,Poner más bancos y una fuente de agua potable en el jardín de la plaza de Patraix,Patraix,Patraix,18000,sintetica,,
-11,Más bancos en la plaza de Patraix,Necesitamos bancos para sentarse en la plaza de Patraix y una fuente para beber,Patraix,Patraix,15000,sintetica,,
-12,Pipicán vallado en Orriols,Zona cerrada para perros con fuente y bancos en el solar de la calle Sant Vicent de Paül,Rascanya,Orriols,45000,sintetica,,
-13,Contratar monitores para el polideportivo,Contratar monitores deportivos por las tardes en el polideportivo municipal,Rascanya,Torrefiel,60000,sintetica,,
-14,Pantallas acústicas junto a las vías del tren,Instalar pantallas antiruido junto a las vías de Renfe que pasan por el barrio,Jesús,La Raiosa,200000,sintetica,,
-15,Iluminación LED en el parque de Marxalenes,Renovar las farolas del parque por iluminación LED más eficiente y segura,La Saïdia,Marxalenes,70000,sintetica,,
-16,Calistenia al aire libre en el Jardín del Turia,Zona de ejercicio con barras de calistenia en el tramo del Turia de la Saïdia,La Saïdia,Marxalenes,22000,sintetica,,
-17,Pista de skate en el barrio,Construir una pista de skate en el solar junto al polideportivo,Benicalap,Benicalap,250000,sintetica,,
-18,Pintar los bancos de la plaza,Repintar los bancos de la plaza que están desconchados,Extramurs,La Petxina,3000,sintetica,,
+id,titulo,descripcion,distrito,barrio,presupuesto_estimado,origen,decision_real,motivo_real,edicion,votos,demo,alerta_esperada
+R01,Peatonalización la roqueta (extramurs),Peatonalización la roqueta (extramurs),Extramurs,La Roqueta,100000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,490,no,sin_alertas
+R02,Aavv font d´en corts - arreglar cami del pou,Aavv font d´en corts - arreglar cami del pou,Quatre Carreres,La Punta,114000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,276,no,sin_alertas
+R03,Nuevo parque sostenible en patraix!!,Nuevo parque sostenible en patraix!!,Patraix,Favara,262000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,245,no,sin_alertas
+R04,Estudio reurbanizacion y soterramiento de contenedores c/ grabador esteve,Estudio reurbanizacion y soterramiento de contenedores c/ grabador esteve,L'Eixample,El Pla del Remei,61000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,189,no,sin_alertas
+R05,Fuensanta: habilitacion espacios peatonales entre edificios,Fuensanta: habilitacion espacios peatonales entre edificios,L'Olivereta,La Fontsanta,37480,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,171,no,sin_alertas
+R06,Ampliar tramo acera en joaquín ballester,Ampliar tramo acera en joaquín ballester,Campanar,Les Tendetes,165000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,91,no,sin_alertas
+R07,Sustituir los báculos de carretera y renovación de la instalación de alumbrado,Sustituir los báculos de carretera y renovación de la instalación de alumbrado,Poblats Marítims,Natzaret,276000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,63,no,sin_alertas
+R08,Finalización de zonas ajardinadas de en corts y la fonteta (quatre carreres),Finalización de zonas ajardinadas de en corts y la fonteta (quatre carreres),Quatre Carreres,Fonteta de Sant Lluís,610000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,207,no,sin_alertas
+R09,Mejora entorno colegio cervantes,Mejora entorno colegio cervantes,Extramurs,El Botànic,400000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,139,no,sin_alertas
+R10,Pacificación táctica de calle jesús (la roqueta),Pacificación táctica de calle jesús (la roqueta),Extramurs,La Roqueta,30000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,327,no,sin_alertas
+R11,Carril bici en calle campos crespo por la estación de metro de safranar,Carril bici en calle campos crespo por la estación de metro de safranar,Patraix,Favara,450000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,238,no,sin_alertas
+R12,Estudio reurbanizacion y soterramiento de contenedores c/ sorni,Estudio reurbanizacion y soterramiento de contenedores c/ sorni,L'Eixample,El Pla del Remei,61000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2022-2023,186,no,sin_alertas
+R13,Contenedores “reverse vending” recicla i guanya diners,Contenedores “reverse vending” recicla i guanya diners,Ciudad,,160000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,6323,no,sin_alertas
+R14,Más árboles para una valencia verde,Más árboles para una valencia verde,Ciudad,,1000000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,4952,no,sin_alertas
+R15,Red de parkings de bajo coste.,Red de parkings de bajo coste.,Ciudad,,18000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,4863,no,sin_alertas
+R16,Instal·lació de lavabos públics a les platges de valència,Instal·lació de lavabos públics a les platges de valència,Ciudad,,180000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,4693,no,sin_alertas
+R17,Arbres de vent i solars. paviments energètics. consciència energètica sostenible,Arbres de vent i solars. paviments energètics. consciència energètica sostenible,Ciudad,,362040,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,4660,no,sin_alertas
+R18,Contenedores de reciclaje de aceites usados,Contenedores de reciclaje de aceites usados,Ciudad,,300000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,4545,no,sin_alertas
+R19,Recuperar fluidez del tráfico rediseñando los carriles bici problemáticos,Recuperar fluidez del tráfico rediseñando los carriles bici problemáticos,Ciudad,,10000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3984,no,sin_alertas
+R20,Peatonalizar calle colón para siempre,Peatonalizar calle colón para siempre,Ciudad,,18000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3760,no,sin_alertas
+R21,Proyecto túnel jardín viveros y museo bellas artes valencia (san pio v),Proyecto túnel jardín viveros y museo bellas artes valencia (san pio v),Ciudad,,18000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3411,no,sin_alertas
+R22,Contaminación visual – soterramiento de contenedores c. antiguos- dif. barrios,Contaminación visual – soterramiento de contenedores c. antiguos- dif. barrios,Ciudad,,460000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3282,no,sin_alertas
+R23,Segundo anillo ciclista,Segundo anillo ciclista,Ciudad,,1350000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3232,no,sin_alertas
+R24,Adaptación de el palmar para el paso de personas con movilidad reducida,Adaptación de el palmar para el paso de personas con movilidad reducida,Ciudad,,18000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3212,no,sin_alertas
+R25,Renovación colección infantil y juvenil de la biblioteca maría moliner y tomàs v,Renovación colección infantil y juvenil de la biblioteca maría moliner y tomàs v,Ciudad,,12000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3084,no,sin_alertas
+R26,Biblioteca de malilla - roís de corella. propuesta de inversión,Biblioteca de malilla - roís de corella. propuesta de inversión,Ciudad,,19900,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,3061,no,sin_alertas
+R27,Remodelació del gulliver,Remodelació del gulliver,Ciudad,,1100000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,2965,no,sin_alertas
+R28,"Carril bici castellar-valencia, acceso a valenbisi y motos electri. en castellar","Carril bici castellar-valencia, acceso a valenbisi y motos electri. en castellar",Ciudad,,6000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,2745,no,sin_alertas
+R29,Nou espai dones i igualtat,Nou espai dones i igualtat,Ciudad,,100000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,2686,no,sin_alertas
+R30,Carril bici de blasco ibañez fins a vicent zaragozà,Carril bici de blasco ibañez fins a vicent zaragozà,Ciudad,,250000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,2627,no,sin_alertas
+R31,Carril bici avda del cid,Carril bici avda del cid,Ciudad,,400000,real,viable,Superó la viabilidad técnica y fue votada y seleccionada,2019-2020,2613,no,sin_alertas
+S01,Toldos en la plaza de Benimaclet,En verano la plaza es un horno y los niños no pueden jugar. Proponemos instalar toldos o velas de sombra sobre la zona de juegos.,Benimaclet,Benimaclet,35000,sintetica,,,,,no,duplicado:A
+S02,Sombra para el parque infantil de Benimaclet,"Pedimos estructuras de sombra en el parque infantil de la plaza, porque a partir de mayo no se puede estar.",Benimaclet,Benimaclet,40000,sintetica,,,,,no,duplicado:A
+S03,Ombra a la plaça de Benimaclet,Instal·lar veles d'ombra a la plaça on juguen els xiquets. A l'estiu no hi ha cap arbre que faça ombra.,Benimaclet,Benimaclet,30000,sintetica,,,,,no,duplicado:A
+S04,Carril bici en la avenida de Tres Forques hasta Patraix,Conectar Patraix con el anillo ciclista mediante un carril bici segregado. Ahora hay que ir por la calzada con coches.,Patraix,Patraix,180000,sintetica,,,,,no,duplicado:B
+S05,Conexión ciclista de Patraix con el centro,Un carril bici protegido que una el barrio de Patraix con la red ciclista existente. Muchos vecinos irían en bici al trabajo.,Patraix,Patraix,200000,sintetica,,,,,no,duplicado:B
+S06,Carril bici segur a Patraix,Fer un carril bici separat del trànsit que connecte Patraix amb la resta de la ciutat.,Patraix,Patraix,150000,sintetica,,,,,no,duplicado:B
+S07,Pipicán en Orriols,Zona vallada para perros en algún solar o parque de Orriols. Ahora los perros sueltos molestan en los jardines.,Rascanya,Orriols,25000,sintetica,,,,,no,duplicado:C
+S08,Parque canino vallado en el barrio de Orriols,"Crear un área de esparcimiento canino con vallado, fuente y papeleras en Orriols.",Rascanya,Orriols,30000,sintetica,,,,,no,duplicado:C
+S09,Zona para perros en Orriols,Pedimos un espacio cerrado para que los perros corran sin molestar a nadie.,Rascanya,Orriols,20000,sintetica,,,,,no,duplicado:C
+S10,Fuentes de agua potable en el Cabanyal,Instalar fuentes para beber en las calles principales del Cabanyal; en verano no hay dónde rellenar agua.,Poblats Marítims,el Cabanyal-el Canyamelar,18000,sintetica,,,,,no,duplicado:D
+S11,Más fuentes para beber en el Canyamelar,Colocar fuentes de agua potable en las plazas del Canyamelar y el Cabanyal.,Poblats Marítims,el Cabanyal-el Canyamelar,15000,sintetica,,,,,no,duplicado:D
+S12,Espigones en la playa de la Malvarrosa,Construir espigones de piedra en el mar para frenar la pérdida de arena de la playa.,Poblats Marítims,la Malva-rosa,1500000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S13,Regenerar la arena de la playa de Pinedo,La playa de Pinedo pierde arena cada año. Pedimos aportar arena y construir espigones.,Pobles del Sud,Pinedo,900000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S14,Nuevo instituto en Malilla,El barrio ha crecido mucho y los adolescentes tienen que ir lejos. Pedimos construir un instituto de secundaria.,Quatre Carreres,Malilla,6000000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S15,Centro de salud en el Grau,Construir un centro de salud nuevo en el Grau porque el actual está saturado.,Poblats Marítims,el Grau,3500000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S16,Ampliar el colegio público de Benicalap con un aulario nuevo,El colegio no tiene plazas suficientes. Proponemos construir un edificio de aulas nuevo.,Benicalap,Benicalap,1200000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S17,Parada de metro en Campanar-Tendetes,Abrir una nueva estación de metro entre Campanar y Tendetes para dar servicio al barrio.,Campanar,les Tendetes,8000000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S18,Más frecuencia del metro de la línea 4,Que el tranvía de la línea 4 pase cada 5 minutos en hora punta.,Benimaclet,Camí de Vera,,sintetica,,,,,no,fuera_competencia|no_inversion
+S19,Soterrar las vías del tren en Font de Sant Lluís,Las vías del tren parten el barrio. Pedimos soterrarlas.,Quatre Carreres,la Fonteta de Sant Lluís,20000000,sintetica,,,,,no,fuera_competencia|fuera_presupuesto
+S20,Abrir el puerto a los vecinos de Natzaret,Que la Autoridad Portuaria ceda terrenos del puerto para un paseo junto al mar en Natzaret.,Poblats Marítims,Natzaret,500000,sintetica,,,,,no,fuera_competencia
+S21,Fiesta de verano en el barrio de Russafa,Organizar una fiesta popular con música y paellas en la plaza durante el mes de julio.,l'Eixample,Russafa,8000,sintetica,,,,,no,no_inversion
+S22,Talleres de robótica para niños,Clases gratuitas de robótica en el centro municipal de juventud los sábados.,Algirós,Ciutat Jardí,12000,sintetica,,,,,no,no_inversion
+S23,Contratar un socorrista para la piscina de Benicalap,La piscina municipal necesita más socorristas en verano.,Benicalap,Benicalap,25000,sintetica,,,,,no,no_inversion
+S24,Pintar los pasos de peatones de la calle Sagunto,Los pasos de cebra están borrados y son peligrosos. Hay que repintarlos.,la Saïdia,Sant Antoni,3000,sintetica,,,,,no,no_inversion
+S25,Arreglar las baldosas rotas de la plaza del Pilar,Hay baldosas levantadas y la gente tropieza. Pedimos que se reparen.,Ciutat Vella,el Pilar,4000,sintetica,,,,,no,no_inversion
+S26,Más limpieza en las calles del Carme,Aumentar la frecuencia de limpieza los fines de semana en el barrio del Carme.,Ciutat Vella,el Carme,,sintetica,,,,,no,no_inversion
+S27,Policía de barrio en Nou Moles,Que haya una patrulla fija de policía local caminando por Nou Moles.,l'Olivereta,Nou Moles,,sintetica,,,,,no,no_inversion
+S28,Concierto de bandas de música en Patraix,Un ciclo de conciertos de las bandas del barrio en primavera.,Patraix,Patraix,6000,sintetica,,,,,no,no_inversion
+S29,Cursos de valenciano para mayores,Clases de valenciano en el centro de mayores de Torrefiel.,Rascanya,Torrefiel,5000,sintetica,,,,,no,no_inversion
+S30,Podar los árboles de la avenida del Puerto,Los árboles tapan las farolas. Pedimos poda.,Camins al Grau,la Creu del Grau,7000,sintetica,,,,,no,no_inversion
+S31,Bancos en el paseo de la Alameda (tramo Exposició),Instalar bancos cada 50 metros; las personas mayores no tienen dónde descansar.,el Pla del Real,Exposició,15000,sintetica,,,,,no,sin_alertas
+S32,Parque de calistenia en Nou Moles,Barras y estructuras para hacer ejercicio al aire libre en el jardín del barrio.,l'Olivereta,Nou Moles,45000,sintetica,,,,,no,sin_alertas
+S33,Juegos infantiles inclusivos en el parque de Marxalenes,Columpios y juegos adaptados para niños con movilidad reducida.,la Saïdia,Marxalenes,70000,sintetica,,,,,no,sin_alertas
+S34,Iluminación LED en el camino de Vera,El camino está muy oscuro de noche. Proponemos farolas LED nuevas.,Benimaclet,Camí de Vera,90000,sintetica,,,,,no,sin_alertas
+S35,Huerto urbano en un solar de Torrefiel,Convertir un solar municipal abandonado en huerto urbano con riego por goteo.,Rascanya,Torrefiel,50000,sintetica,,,,,no,sin_alertas
+S36,Arbolado en la calle de San Vicente (tramo Jesús),Plantar árboles de sombra en alcorques nuevos a lo largo de la calle.,Jesús,la Creu Coberta,60000,sintetica,,,,,no,sin_alertas
+S37,Pista de petanca en Sant Marcel·lí,Construir dos pistas de petanca con bancos y sombra para los mayores del barrio.,Jesús,Sant Marcel·lí,28000,sintetica,,,,,no,sin_alertas
+S38,Aparcabicis seguros en Algirós,Instalar aparcamientos cerrados para bicicletas junto a la parada de metro.,Algirós,l'Illa Perduda,35000,sintetica,,,,,no,sin_alertas
+S39,Plataforma única en la calle Doctor Sumsi,Reurbanizar la calle a un solo nivel para dar prioridad al peatón.,l'Eixample,Russafa,400000,sintetica,,,,,no,sin_alertas
+S40,Mesas de ping-pong en el jardín de Campanar,Instalar dos mesas de ping-pong de hormigón en el jardín junto a la iglesia.,Campanar,Campanar,10000,sintetica,,,,,no,sin_alertas
+S41,Pasarela de madera en la Devesa del Saler,Mejorar los accesos peatonales a la Devesa con pasarelas que protejan las dunas.,Pobles del Sud,el Saler,120000,sintetica,,,,,no,sin_alertas
+S42,Climatizar el centro municipal de mayores de El Palmar,Instalar placas solares y aire acondicionado eficiente en el centro de mayores.,Pobles del Sud,el Palmar,85000,sintetica,,,,,no,sin_alertas
+S43,Pista deportiva cubierta en Benicalap,Cubrir la pista polideportiva del barrio para poder usarla cuando llueve o hace calor.,Benicalap,Ciutat Fallera,250000,sintetica,,,,,no,sin_alertas
+S44,Fuente ornamental y bancos en la plaza de Arrancapins,"Renovar la plaza con una fuente, bancos nuevos y vegetación.",Extramurs,Arrancapins,95000,sintetica,,,,,no,sin_alertas
+S45,Biblioteca: ampliar el espacio de estudio de la biblioteca de Benimaclet,Obras para añadir una sala de estudio con 40 puestos y enchufes.,Benimaclet,Benimaclet,180000,sintetica,,,,,no,sin_alertas
+S46,Zona de skate en Penya-roja,Construir un pequeño skatepark en el parque del barrio.,Camins al Grau,Penya-roja,110000,sintetica,,,,,no,sin_alertas
+S47,Rampas de accesibilidad en los jardines de Monteolivete,Sustituir escalones por rampas para sillas de ruedas y carritos.,Quatre Carreres,Monteolivete,40000,sintetica,,,,,no,sin_alertas
+S48,Marquesinas con sombra en las paradas de autobús de Orriols,Instalar marquesinas en las paradas que no tienen.,Rascanya,Orriols,55000,sintetica,,,,,no,sin_alertas
+S49,Gran parque metropolitano en el sur de Valencia,"Construir un parque de 20 hectáreas con lago, auditorio y zonas deportivas.",Quatre Carreres,la Punta,15000000,sintetica,,,,,no,fuera_presupuesto
+S50,Carril bici al Perellonet,Conectar el Perellonet con el Saler con un carril bici segregado.,Pobles del Sud,el Perellonet,350000,sintetica,,,,,no,sin_alertas
+DEMO01,Bancos y sombra en la plaza de Sant Isidre,Instalar bancos y árboles de sombra en la plaza; los mayores no tienen dónde sentarse en verano.,Patraix,Sant Isidre,30000,sintetica,,,,,si,sin_alertas
+DEMO02,Ampliar la arena de la playa de la Malvarrosa con un dique,Hacer un dique en el mar y traer arena para que la playa sea más ancha en verano.,Poblats Marítims,la Malva-rosa,2000000,sintetica,,,,,si,fuera_competencia|fuera_presupuesto
+DEMO03,Velas de sombra en la zona de juegos de la plaza de Benimaclet,Los niños no pueden jugar en verano por el sol; pedimos toldos sobre los columpios.,Benimaclet,Benimaclet,35000,sintetica,,,,,si,duplicado:A
