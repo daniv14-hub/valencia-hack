@@ -14,7 +14,7 @@
   - Sintéticas: «Alertas que coinciden con lo esperado: X/Y». `duplicado:A` acierta si está agrupada con todas las demás de la etiqueta A; con `|` deben estar todas; `sin_alertas` = ninguna alerta.
 - `classify.py`: motor de C (`motor_C/classify.py`, probado con el lote real). `classify(titulo, descripcion, distrito, presupuesto_estimado)` llama a OpenRouter con `requests`, tipos en mayúsculas, caché en `cache_clasificacion.json`, regla fija: estimado > partida del distrito → `FUERA_PRESUPUESTO`. Cambios nuestros: lee `OPENROUTER_API_KEY`/`OPENROUTER_MODEL` de `.env` (python-dotenv); distrito «Ciudad» sin regla de partida (solo desproporción > 5 M€); `classify_dict(p) -> dict` para la app (tipos en minúsculas, modo simulado sin clave, lanza excepción si el LLM falla).
 - `criterios.md`: el de C (bases oficiales, partidas por distrito 2025-26).
-- `duplicates.py`: TF-IDF de caracteres + coseno + componentes conexas, solo dentro del mismo distrito. Umbral 0.216 (agrupa A–D; R04/R12 y R13/R18 se agrupan con cualquier umbral útil).
+- `duplicates.py`: TF-IDF de caracteres + coseno + componentes conexas, solo dentro del mismo distrito. TF-IDF ajustado una vez con el CSV sin filas demo; lo escrito en vivo se compara sin reentrenar. `UMBRAL` 0.38 para los grupos del panel (excluye R13/R18; S08 y el grupo A quedan fuera) y `UMBRAL_VECINO` 0.25 para los avisos al vecino (DEMO03 → S01, S02).
 - `batch.py`: CSV → `data/clasificacion.json` con `classify_dict`, reanudable, 1 hilo (el caché no es seguro con hilos); imprime métricas y coste.
 - `data/propuestas.csv`: CSV de B, 31 reales + 50 sintéticas + 3 demo. Último lote real: 0,084 $.
 - `motor_C/`: copia de referencia del motor de C.

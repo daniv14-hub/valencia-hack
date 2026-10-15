@@ -5,16 +5,31 @@ Proyecto real: embeddings multilingües (castellano/valenciano) en PostgreSQL + 
 """
 from __future__ import annotations
 
+from functools import lru_cache
+from pathlib import Path
+
 import pandas as pd
 from scipy.sparse.csgraph import connected_components
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-UMBRAL = 0.216  # ajustado con data/propuestas.csv: agrupa A-D; S02-S03 = 0.218, siguiente par falso = 0.214
+CSV = Path(__file__).parent / "data" / "propuestas.csv"
+# Ajustados con data/propuestas.csv (modelo fijo):
+UMBRAL = 0.38  # grupos del panel: R13-R18 = 0.337 queda fuera; B se une por S04-S05 = 0.419
+UMBRAL_VECINO = 0.25  # avisos orientativos al vecino: DEMO03-S02 = 0.314; ruido máximo de DEMO01-03 = 0.137
 
 
 def _textos(df: pd.DataFrame) -> list[str]:
     return (df["titulo"].fillna("") + ". " + df["descripcion"].fillna("")).str.lower().tolist()
+
+
+@lru_cache(maxsize=1)
+def _modelo() -> TfidfVectorizer:
+    """TF-IDF ajustado una sola vez con el CSV (sin filas demo). Lo que se escribe en vivo
+    se compara contra este modelo sin reentrenarlo, para que las similitudes no se muevan."""
+    df = pd.read_csv(CSV, dtype=str).fillna("")
+    df = df[df["demo"] != "si"]
+    return TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5)).fit(_textos(df))
 
 
 def agrupar(df: pd.DataFrame, umbral: float = UMBRAL) -> pd.DataFrame:
@@ -24,8 +39,7 @@ def agrupar(df: pd.DataFrame, umbral: float = UMBRAL) -> pd.DataFrame:
         df["grupo_duplicado"] = None
         df["similar_a"] = ""
         return df
-    vec = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), min_df=1)
-    sim = cosine_similarity(vec.fit_transform(_textos(df)))
+    sim = cosine_similarity(_modelo().transform(_textos(df)))
     # Mismo distrito pesa más: dos propuestas iguales en distritos distintos no son duplicado
     d = df["distrito"].to_numpy(dtype=object)
     mismo = d[:, None] == d[None, :]
@@ -52,13 +66,13 @@ def agrupar(df: pd.DataFrame, umbral: float = UMBRAL) -> pd.DataFrame:
 
 
 def buscar_parecidas(df: pd.DataFrame, titulo: str, descripcion: str, distrito: str,
-                     umbral: float = UMBRAL, k: int = 3) -> pd.DataFrame:
+                     umbral: float = UMBRAL_VECINO, k: int = 3) -> pd.DataFrame:
     """Para el aviso al ciudadano: propuestas existentes parecidas a una nueva."""
     base = df[df["distrito"] == distrito] if distrito else df
     if base.empty:
         return base
-    vec = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5))
-    m = vec.fit_transform(_textos(base) + [f"{titulo}. {descripcion}".lower()])
-    sims = cosine_similarity(m[-1], m[:-1]).ravel()
+    vec = _modelo()
+    sims = cosine_similarity(vec.transform([f"{titulo}. {descripcion}".lower()]),
+                             vec.transform(_textos(base))).ravel()
     out = base.assign(similitud=sims)
     return out[out["similitud"] >= umbral].sort_values("similitud", ascending=False).head(k)
