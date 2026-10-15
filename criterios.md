@@ -1,6 +1,6 @@
 # Criterios de validación VLCParticipa (fuente: vlcparticipa.valencia.es/help, bases oficiales)
 
-> Garbell usa estos criterios SOLO para señalar posibles alertas. La IA señala, el técnico decide.
+> El pre-filtro usa estos criterios SOLO para señalar posibles alertas. La IA señala, el técnico decide.
 
 ## 1. ¿Es una inversión?
 Inversión = algo que el Ayuntamiento puede CONSTRUIR o ADQUIRIR, perdurable (duración prevista > 1 año), bien inventariable en equipamientos, infraestructuras o espacio público. Pueden ser obras nuevas, rehabilitación o adquisiciones permanentes (p. ej. contenedores).

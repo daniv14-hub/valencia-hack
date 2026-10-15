@@ -10,7 +10,7 @@ from scipy.sparse.csgraph import connected_components
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-UMBRAL = 0.35  # ajustar viendo los datos reales
+UMBRAL = 0.216  # ajustado con data/propuestas.csv: agrupa A-D; S02-S03 = 0.218, siguiente par falso = 0.214
 
 
 def _textos(df: pd.DataFrame) -> list[str]:

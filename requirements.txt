@@ -5,3 +5,4 @@ scipy
 pydantic>=2
 openai>=1.40
 python-dotenv
+requests

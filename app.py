@@ -1,4 +1,4 @@
-"""Garbell – pre-filtro de propuestas VLCParticipa para el técnico municipal.
+"""Pre-filtro de propuestas VLCParticipa – panel del técnico municipal.
 
 Ejecutar:  streamlit run app.py
 """
@@ -17,7 +17,7 @@ CSV = ROOT / "data" / "propuestas.csv"
 JSON = ROOT / "data" / "clasificacion.json"
 MIN_POR_PROPUESTA = 20  # supuesto para estimar el tiempo ahorrado (decirlo en el pitch)
 
-st.set_page_config(page_title="Garbell", page_icon="🏛️", layout="wide")
+st.set_page_config(page_title="Pre-filtro de propuestas VLCParticipa", page_icon="🔍", layout="wide")
 st.markdown("""
 <style>
   .block-container {padding-top: 1.5rem;}
@@ -84,8 +84,8 @@ df["tipos"] = df["alertas"].map(lambda al: {a["tipo"] for a in al})
 df["decision"] = [decision(r) for r in df.itertuples()]
 
 # ---------- Cabecera ----------
-st.title("🏛️ Garbell")
-st.caption("Pre-filtro de propuestas VLCParticipa · Ajuntament de València · "
+st.title("🔍 Pre-filtro de propuestas VLCParticipa")
+st.caption("Asistente para la validación técnica de los presupuestos participativos de València · "
            "**La IA señala, el técnico decide**")
 
 n = len(df)

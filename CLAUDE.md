@@ -1,8 +1,8 @@
-# CLAUDE.md – Garbell (pre-filtro VLCParticipa)
+# CLAUDE.md – Pre-filtro de propuestas VLCParticipa
 
 ## Contexto (no repetir en respuestas)
 - Hackathon ValènciaHack 2026 (Sigma Data Club, UPV, Cátedra Valent-IA, Ajuntament de València). Reto 2: modernizar la administración con tecnología. Jurado: personal del Ayuntamiento. Pitch de 2 min. Se valora más la idea que la ejecución; un chatbot NO vale.
-- Producto: **Garbell**, un **pre-filtro** de IA para la validación técnica de propuestas de VLCParticipa (presupuestos participativos, plataforma CONSUL). Edición 2025-26: 2.777 propuestas, 1.441 en validación técnica manual, 248 aprobadas.
+- Producto: **Pre-filtro de propuestas VLCParticipa** 🔍, un pre-filtro de IA para la validación técnica de propuestas de VLCParticipa (presupuestos participativos, plataforma CONSUL). Edición 2025-26: 2.777 propuestas, 1.441 en validación técnica manual, 248 aprobadas.
 - Principio: **la IA señala, el técnico decide**. La IA no decide nada: solo señala alertas. El técnico revisa todas las propuestas y toma todas las decisiones.
 - Nombres únicos de alerta en todo el proyecto: 🔁 `duplicado` (la calcula la app con `duplicates.py`, no el LLM), 🏛️ `fuera_competencia` (otra administración), 💶 `fuera_presupuesto` (supera la partida oficial del distrito; sin presupuesto = nota informativa, no alerta), 🎉 `no_inversion` (actividad, gasto corriente, mantenimiento). Sin alertas = «Sin alertas · a priori viable».
 - Objetivo de la demo: un panel web que muestre al funcionario las propuestas con sus alertas y agrupadas, más una vista del vecino con avisos en vivo.
@@ -14,7 +14,7 @@
   - Sintéticas: «Alertas que coinciden con lo esperado: X/Y». `duplicado:A` acierta si está agrupada con todas las demás de la etiqueta A; con `|` deben estar todas; `sin_alertas` = ninguna alerta.
 - `classify.py`: motor de C (`motor_C/classify.py`, probado con el lote real). `classify(titulo, descripcion, distrito, presupuesto_estimado)` llama a OpenRouter con `requests`, tipos en mayúsculas, caché en `cache_clasificacion.json`, regla fija: estimado > partida del distrito → `FUERA_PRESUPUESTO`. Cambios nuestros: lee `OPENROUTER_API_KEY`/`OPENROUTER_MODEL` de `.env` (python-dotenv); distrito «Ciudad» sin regla de partida (solo desproporción > 5 M€); `classify_dict(p) -> dict` para la app (tipos en minúsculas, modo simulado sin clave, lanza excepción si el LLM falla).
 - `criterios.md`: el de C (bases oficiales, partidas por distrito 2025-26).
-- `duplicates.py`: TF-IDF de caracteres + coseno + componentes conexas, solo dentro del mismo distrito. Umbral 0.35.
+- `duplicates.py`: TF-IDF de caracteres + coseno + componentes conexas, solo dentro del mismo distrito. Umbral 0.216 (agrupa A–D; R04/R12 y R13/R18 se agrupan con cualquier umbral útil).
 - `batch.py`: CSV → `data/clasificacion.json` con `classify_dict`, reanudable, 1 hilo (el caché no es seguro con hilos); imprime métricas y coste.
 - `data/propuestas.csv`: CSV de B, 31 reales + 50 sintéticas + 3 demo. Último lote real: 0,084 $.
 - `motor_C/`: copia de referencia del motor de C.
@@ -35,5 +35,4 @@ JSON por propuesta (`classify_dict`): `id, alertas: [{tipo ∈ {duplicado, fuera
 - Probar con: `streamlit run app.py` o el test headless con `streamlit.testing.v1.AppTest`.
 
 ## Pendiente (en orden)
-1. Ajustar `UMBRAL` de duplicados: no agrupa A (S01–S03) ni S08 con C; agrupa R04 con R12 (reales, ambas aprobadas).
-2. Pulir el diseño y congelar en el minuto 75. Grabar el vídeo de respaldo.
+1. Pulir el diseño y congelar en el minuto 75. Grabar el vídeo de respaldo.
