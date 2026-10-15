@@ -233,8 +233,9 @@ with tab_resumen:
 
     izq, der = st.columns(2)
     with izq:
-        # 2. Presupuesto solicitado frente a partida por distrito (sin «Ciudad»)
-        d2 = df_g[df_g.distrito.str.strip().str.lower() != "ciudad"].assign(
+        # 2. Demanda viable a priori (sin alertas de competencia ni presupuesto) frente a partida (sin «Ciudad»)
+        compite = ~df_g.tipos.map(lambda s: bool(s & {"fuera_competencia", "fuera_presupuesto"}))
+        d2 = df_g[compite & (df_g.distrito.str.strip().str.lower() != "ciudad")].assign(
             euros=lambda x: pd.to_numeric(x.presupuesto_estimado, errors="coerce").fillna(0))
         d2 = d2.groupby("distrito", as_index=False).euros.sum()
         d2["partida"] = d2.distrito.map(presupuesto_del_distrito)
@@ -242,25 +243,22 @@ with tab_resumen:
         d2["pct"] = d2.euros / d2.partida
         d2["supera"] = d2.pct > 1
         orden = d2.sort_values("pct", ascending=False).distrito.tolist()
-        tope = float(d2.partida.max()) * 1.4  # escala recortada: las barras que la superan se cortan
-        d2["barra"] = d2.euros.clip(upper=tope)
-        d2["pos"] = d2.barra
-        escala_eur = alt.Scale(domain=[0, tope * 1.18])
+        escala_eur = alt.Scale(domain=[0, float(d2[["euros", "partida"]].max().max()) * 1.12], nice=False)
         y = alt.Y("distrito:N", sort=orden, title=None)
         eje_eur = alt.Axis(labelExpr="format(datum.value / 1e6, '.1f') + ' M€'", tickCount=4, labelFontSize=12)
-        tip = [alt.Tooltip("distrito:N", title="Distrito"), alt.Tooltip("euros:Q", title="Solicitado (€)", format=",.0f"),
+        tip = [alt.Tooltip("distrito:N", title="Distrito"), alt.Tooltip("euros:Q", title="Demanda viable a priori (€)", format=",.0f"),
                alt.Tooltip("partida:Q", title="Partida (€)", format=",.0f"), alt.Tooltip("pct:Q", title="% de la partida", format=".0%")]
         b2 = alt.Chart(d2).mark_bar(height=16).encode(
-            x=alt.X("barra:Q", axis=eje_eur, scale=escala_eur, title=None), y=y, tooltip=tip,
+            x=alt.X("euros:Q", axis=eje_eur, scale=escala_eur, title=None), y=y, tooltip=tip,
             color=alt.condition("datum.supera", alt.value(COLOR["fuera_presupuesto"]), alt.value(MARINO)))
         t2 = alt.Chart(d2).mark_tick(color=TEXTO, thickness=2.5, size=24).encode(
             x=alt.X("partida:Q", scale=escala_eur, title=None), y=y, tooltip=tip)
         l2 = alt.Chart(d2).mark_text(align="left", dx=6, fontSize=12, color=TEXTO).encode(
-            x=alt.X("pos:Q", scale=escala_eur, title=None), y=y, text=alt.Text("pct:Q", format=".0%"))
+            x=alt.X("euros:Q", scale=escala_eur, title=None), y=y, text=alt.Text("pct:Q", format=".0%"))
         dibujar((b2 + t2 + l2).properties(height=max(260, 26 * len(d2)), title=titulo(
-            "Presupuesto solicitado frente a partida disponible por distrito",
-            ["Barra: suma solicitada · Marca: partida oficial 2025-26 · Ámbar: supera la partida",
-             "Etiqueta: % de la partida solicitado · Escala recortada en los distritos que la superan mucho"])))
+            "Demanda viable a priori frente a partida disponible por distrito",
+            ["Barra: suma de las propuestas sin alertas de competencia ni de presupuesto",
+             "Marca: partida oficial 2025-26 · Ámbar: supera la partida · Etiqueta: % de la partida"])))
     with der:
         # 3. A qué administración redirigir
         adm = [a.get("administracion") or "Sin especificar" for al in df.alertas for a in al
