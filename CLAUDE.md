@@ -4,7 +4,7 @@
 - Hackathon ValènciaHack 2026 (Sigma Data Club, UPV, Cátedra Valent-IA, Ajuntament de València). Reto 2: modernizar la administración con tecnología. Jurado: personal del Ayuntamiento. Pitch de 2 min. Se valora más la idea que la ejecución; un chatbot NO vale.
 - Producto: **Garbell**, un **pre-filtro** de IA para la validación técnica de propuestas de VLCParticipa (presupuestos participativos, plataforma CONSUL). Edición 2025-26: 2.777 propuestas, 1.441 en validación técnica manual, 248 aprobadas.
 - Principio: **la IA señala, el técnico decide**. La IA no decide nada: solo señala alertas. El técnico revisa todas las propuestas y toma todas las decisiones.
-- 4 alertas: 🔁 `duplicado` (la calcula la app con `duplicates.py`, no el LLM), 🏛️ `competencia` (otra administración), 💶 `presupuesto` (> 160.000 € provisional [VERIFICAR C], sin presupuesto o desproporcionado), 🎉 `no_inversion` (actividad, gasto corriente, mantenimiento). Sin alertas = «Sin alertas · a priori viable».
+- 4 alertas: 🔁 `duplicado` (la calcula la app con `duplicates.py`, no el LLM), 🏛️ `competencia` (otra administración), 💶 `presupuesto` (solo si supera 160.000 €, umbral provisional [VERIFICAR C]; sin presupuesto = nota informativa, no alerta), 🎉 `no_inversion` (actividad, gasto corriente, mantenimiento). Sin alertas = «Sin alertas · a priori viable».
 - Objetivo de la demo: un panel web que muestre al funcionario las propuestas con sus alertas y agrupadas, más una vista del vecino con avisos en vivo.
 
 ## Estado actual (funciona)

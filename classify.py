@@ -156,10 +156,7 @@ def _classify_mock(p: dict) -> dict:
         euros = float(p.get("presupuesto_estimado") or 0)
     except ValueError:
         euros = 0
-    if euros <= 0:
-        alertas.append({"tipo": "presupuesto", "mensaje": "Sin presupuesto estimado.",
-                        "norma": "Bases – presupuesto", "confianza": 0.9})
-    elif euros > 160000:  # [VERIFICAR C] umbral provisional
+    if euros > 160000:  # [VERIFICAR C] umbral provisional; sin presupuesto no es alerta
         alertas.append({"tipo": "presupuesto", "mensaje": f"{euros:,.0f} € supera el umbral orientativo de 160.000 €.",
                         "norma": "Bases – asignación por distrito", "confianza": 0.7})
 

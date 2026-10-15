@@ -14,6 +14,7 @@ from duplicates import agrupar, buscar_parecidas
 ROOT = Path(__file__).parent
 CSV = ROOT / "data" / "propuestas.csv"
 JSON = ROOT / "data" / "clasificacion.json"
+MIN_POR_PROPUESTA = 20  # supuesto para estimar el tiempo ahorrado (decirlo en el pitch)
 
 st.set_page_config(page_title="Garbell", page_icon="🏛️", layout="wide")
 st.markdown("""
@@ -93,7 +94,7 @@ coste_medio = sum(costes) / len(costes) if costes else 0
 reales = df[df.decision_real.isin(["viable", "rechazada"])]
 rech, via = reales[reales.decision_real == "rechazada"], reales[reales.decision_real == "viable"]
 c_rech, c_via = int(rech.tipos.map(bool).sum()), int((~via.tipos.map(bool)).sum())
-k = st.columns(5)
+k = st.columns(6)
 k[0].metric("Propuestas", n)
 k[1].metric("Sin alertas", int((~con).sum()))
 k[2].metric("Con alertas", int(con.sum()))
@@ -101,6 +102,9 @@ k[3].metric("Grupos de duplicados", grupos)
 k[4].metric("Coincidencia con técnicos", f"{c_rech + c_via}/{len(reales)}" if len(reales) else "—")
 k[4].markdown(f"<span class='nota'>Con alerta y descartadas por el técnico: {c_rech}/{len(rech)}<br>"
               f"Sin alertas y admitidas por el técnico: {c_via}/{len(via)}</span>", unsafe_allow_html=True)
+k[5].metric("Tiempo de cribado estimado ahorrado", f"{n * MIN_POR_PROPUESTA / 60 * 0.6:.0f} h")
+k[5].markdown(f"<span class='nota'>Estimación: {MIN_POR_PROPUESTA} min por propuesta, "
+              "60 % del cribado asistido</span>", unsafe_allow_html=True)
 k2 = st.columns(4)
 for col, (t, nombre) in zip(k2, NOMBRE.items()):
     col.metric(f"{ICONO[t]} {nombre}", int(df.tipos.map(lambda s: t in s).sum()))
@@ -146,6 +150,8 @@ with tab_bandeja:
                         f"{p.distrito} · {p.barrio} · {float(p.presupuesto_estimado or 0):,.0f} € · "
                         f"Decisión del técnico: <b>{p.decision}</b>", unsafe_allow_html=True)
             st.write(p.descripcion)
+            if not float(p.presupuesto_estimado or 0):
+                st.caption("ℹ️ Sin presupuesto estimado")
             if c.get("resumen"):
                 st.info(f"**Resumen IA:** {c['resumen']}")
         with der:

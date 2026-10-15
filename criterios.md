@@ -47,10 +47,9 @@ carril bici, sombras, iluminación...). Indicios claros de que no lo es:
 - Subvenciones o ayudas a colectivos.
 
 ## Alerta `presupuesto`
-- El presupuesto estimado supera 160.000 € [VERIFICAR C: umbral provisional; confirmar la
-  asignación oficial por distrito y si existe un máximo por propuesta].
-- No hay presupuesto estimado (vacío o 0).
-- El presupuesto es claramente desproporcionado para lo que se pide.
+Solo si el presupuesto estimado supera 160.000 € [VERIFICAR C: umbral provisional; confirmar
+la asignación oficial por distrito y si existe un máximo por propuesta].
+Si no hay presupuesto estimado (vacío o 0), **no generes alerta**: la app ya lo indica con una nota.
 
 ## Lo que no sabes
 Titularidad del suelo, obras ya previstas, contratos en curso, informes de otros servicios.
