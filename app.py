@@ -28,6 +28,7 @@ ICONO = {"duplicado": "content_copy", "fuera_competencia": "account_balance", "f
 NOMBRE = {"duplicado": "Duplicado", "fuera_competencia": "Fuera de competencia",
           "fuera_presupuesto": "Fuera de presupuesto", "no_inversion": "No inversión"}
 SIN_ALERTAS = "Sin alertas · a priori viable"
+ADMIN = {"FGV": "Ferrocarrils de la Generalitat Valenciana (FGV)"}  # solo presentación; los datos no cambian
 AVISO_VECINO = "Puedes enviarla igualmente; un técnico la revisará."
 
 st.set_page_config(page_title="Pre-filtro de propuestas VLCParticipa", page_icon=":material/search:", layout="wide")
@@ -261,11 +262,11 @@ with tab_resumen:
              "Marca: partida oficial 2025-26 · Ámbar: supera la partida · Etiqueta: % de la partida"])))
     with der:
         # 3. A qué administración redirigir
-        adm = [a.get("administracion") or "Sin especificar" for al in df.alertas for a in al
+        adm = [ADMIN.get(a.get("administracion"), a.get("administracion")) or "Sin especificar" for al in df.alertas for a in al
                if a["tipo"] == "fuera_competencia"]
         if adm:
             d3 = pd.Series(adm).value_counts().rename_axis("adm").reset_index(name="n")
-            y3 = alt.Y("adm:N", sort="-x", title=None)
+            y3 = alt.Y("adm:N", sort="-x", title=None, axis=alt.Axis(labelLimit=340))
             b3 = alt.Chart(d3).mark_bar(height=18, color=COLOR["fuera_competencia"]).encode(
                 x=alt.X("n:Q", axis=None), y=y3,
                 tooltip=[alt.Tooltip("adm:N", title="Administración"), alt.Tooltip("n:Q", title="Alertas")])
@@ -382,7 +383,7 @@ with tab_bandeja:
                 t, clave = a["tipo"], (str(sel), a["tipo"])
                 resto = mi("gavel") + " " + html.escape(a.get("norma") or "—")
                 if a.get("administracion"):
-                    resto += f"<br>Administración competente: {html.escape(a['administracion'])}"
+                    resto += f"<br>Administración competente: {html.escape(ADMIN.get(a['administracion'], a['administracion']))}"
                 if a.get("confianza") is not None:
                     resto += f" · confianza {a['confianza']:.0%}"
                 estado = st.session_state.alertas_dec.get(clave, "")
