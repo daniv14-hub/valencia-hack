@@ -101,7 +101,7 @@ with tab_bandeja:
     tabla = vista[["id", "titulo", "distrito", "estado", "confianza", "grupo_duplicado", "decision"]].copy()
     tabla["estado"] = tabla["estado"].map(ICONO)
     tabla["grupo_duplicado"] = tabla["grupo_duplicado"].fillna("")
-    st.dataframe(tabla, hide_index=True, width="stretch",
+    st.dataframe(tabla, hide_index=True, use_container_width=True,
                  column_config={"confianza": st.column_config.ProgressColumn("Confianza", min_value=0, max_value=1),
                                 "grupo_duplicado": "Duplicado", "decision": "Decisión técnico"})
 
@@ -133,13 +133,13 @@ with tab_bandeja:
                 st.markdown(f"{icono} **{nombre}** — {cr.get('motivo', '')}  \n"
                             f"<span class='nota'>📜 {cr.get('norma', '')}</span>", unsafe_allow_html=True)
         b1, b2, b3 = st.columns(3)
-        if b1.button("✔️ Aceptar sugerencia", width="stretch"):
+        if b1.button("✔️ Aceptar sugerencia", use_container_width=True):
             st.session_state.decisiones[str(sel)] = f"Aceptada ({ICONO[p.estado]})"
             st.rerun()
-        if b2.button("✏️ Marcar viable", width="stretch"):
+        if b2.button("✏️ Marcar viable", use_container_width=True):
             st.session_state.decisiones[str(sel)] = "Cambiada → viable"
             st.rerun()
-        if b3.button("✏️ Marcar rechazo", width="stretch"):
+        if b3.button("✏️ Marcar rechazo", use_container_width=True):
             st.session_state.decisiones[str(sel)] = "Cambiada → rechazo"
             st.rerun()
 
@@ -157,7 +157,7 @@ with tab_dup:
     for g, grupo in dups.groupby("grupo_duplicado"):
         with st.expander(f"{g} · {len(grupo)} propuestas · {grupo.distrito.iloc[0]} — «{grupo.titulo.iloc[0]}»", expanded=True):
             st.dataframe(grupo[["id", "titulo", "descripcion", "barrio", "presupuesto_estimado"]],
-                         hide_index=True, width="stretch")
+                         hide_index=True, use_container_width=True)
             st.button(f"Fusionar en una propuesta y avisar a los {len(grupo)} autores", key=f"fus{g}")
 
 # ---------- Nueva propuesta (vista vecino) ----------
